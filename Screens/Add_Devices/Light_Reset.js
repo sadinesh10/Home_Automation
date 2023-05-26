@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Heading from "./Heading";
 import { AntDesign } from "@expo/vector-icons";
 import { Pressable } from "react-native";
@@ -7,11 +7,26 @@ import { imageStyles } from "../Authentication/Authentication_util";
 import { useNavigation } from "@react-navigation/native";
 
 function Light_Reset() {
-  const navigation= useNavigation()
+  const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
       <View>
-        <Heading />
+        <View style={{ flexDirection: "row" }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Add_Device_Authentication");
+            }}
+          >
+            <Image
+              style={{ margin: 25 }}
+              source={require("../../assets/Unfilled/arrow-back-fill.png")}
+            ></Image>
+          </TouchableOpacity>
+
+          <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
+            Add Device
+          </Text>
+        </View>
       </View>
       <View>
         <Text
@@ -106,8 +121,8 @@ function Light_Reset() {
 
       <View style={{ marginTop: 70 }}>
         <Pressable
-          onPress={()=>{
-            navigation.navigate("Light_Awaiting")
+          onPress={() => {
+            navigation.navigate("Light_Awaiting");
           }}
           style={{
             alignItems: "center",
@@ -147,8 +162,8 @@ function Light_Reset() {
               fontSize: 16,
               color: "#707070",
               opacity: 100,
-              alignSelf:"center",
-              marginTop: 10
+              alignSelf: "center",
+              marginTop: 10,
             }}
           >
             If Light is not flashing repeat this step.

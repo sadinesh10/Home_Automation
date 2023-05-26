@@ -15,23 +15,41 @@ import ButtomNav from "./Navigation/ButtomNavigation";
 import Switch from "./Screens/HomeScreen/Switch";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import Add_Device from "./Screens/Add_Devices/Add_Device";
+import Switch_Reset from "./Screens/Add_Devices/Switch/Switch_Reset";
+import { Provider } from "react-redux";
+import Store from "./redux/Store";
+import Selected_Kitchen_Device from "./Screens/Add_Scenes/Select_Device/Selected_Kitchen_Device";
+import Living_Room_Home_Screen from "./Screens/Living_Room/Living_Room_Home_Screen";
+import Schedules_List from "./Screens/Living_Room/Schedule/Schedules_List";
+import Kitchen_Home_Screen from "./Screens/Kitchen/Kitchen_Home_Screen";
+
 
 export default function App() {
   return (
-    <GestureHandlerRootView  style={{ flex: 1, }}>
-      <BottomSheetModalProvider>
-        <NavigationContainer>
-          {/* <Add_Device/> */}
-          {/* <Switch/> */}
-          {/* <ButtomNav /> */}
-          {/* <CustomSlider/> */}
-          {/* <Home/> */}
-          <StackNavigation/>
-          <StatusBar translucent={false} style="auto" backgroundColor="white" />
-        </NavigationContainer>
-      </BottomSheetModalProvider>
-    </GestureHandlerRootView>
+    <Provider store={Store}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <BottomSheetModalProvider>
+          <NavigationContainer>
+            {/* <Add_Device/> */}
+            {/* <Switch/> */}
+            {/* <ButtomNav /> */}
+            {/* <CustomSlider/> */}
+            {/* <Home/> */}
+            {/* <StackNavigation /> */}
+            {/* <Switch_Reset/> */}
+            {/* <Selected_Kitchen_Device/> */}
+            <Living_Room_Home_Screen/>
+            {/* <Schedules_List/> */}
+            {/* <Kitchen_Home_Screen/> */}
+            <StatusBar
+              translucent={false}
+              style="auto"
+              backgroundColor="white"
+            />
+          </NavigationContainer>
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
+    </Provider>
   );
 }
 

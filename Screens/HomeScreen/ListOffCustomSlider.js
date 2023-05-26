@@ -17,14 +17,14 @@ class ListOffCustomSlider extends Component {
     const sliderStyle = {
       sliderDummy: {
         backgroundColor: "white",
-        width: 300,
+        width: 200,
         height: 27,
         borderRadius: 100,
         position: "absolute",
       },
       sliderReal: {
         backgroundColor: "#707070",
-        width: (this.state.slideValue / 50) * 300,
+        width: (this.state.slideValue / 50) * 200,
         height: 27,
         borderRadius: 100,
 

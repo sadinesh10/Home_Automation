@@ -16,7 +16,9 @@ function Light_Awaiting() {
           marginHorizontal: "27%",
         }}
       >
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{
+          navigation.navigate("Light_Reset")
+        }}>
           <Image
             style={{
               alignSelf: "flex-end",

@@ -1,14 +1,31 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
-import Heading from "./Heading";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import Heading from "../Heading";
 import { AntDesign } from "@expo/vector-icons";
 import { Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 function Fan_Reset() {
+  const navigation= useNavigation()
   return (
-    <View>
+    <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
       <View>
-        <Heading />
+        <View style={{ flexDirection: "row" }}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Fan_Device_Authentication");
+            }}
+          >
+            <Image
+              style={{ margin: 25 }}
+              source={require("../../../assets/Unfilled/arrow-back-fill.png")}
+            ></Image>
+          </TouchableOpacity>
+
+          <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
+            Add Device
+          </Text>
+        </View>
       </View>
       <View>
         <Text
@@ -40,7 +57,7 @@ function Fan_Reset() {
             height: 40,
             resizeMode: "contain",
           }}
-          source={require("../../assets/Unfilled/cooling-symbol-2677.png")}
+          source={require("../../../assets/Unfilled/cooling-symbol-2677.png")}
         ></Image>
         <Text
           style={{
@@ -62,7 +79,7 @@ function Fan_Reset() {
             width: "90%",
           }}
         >
-          If the Plug is already flashing then skip the reset step.
+          If the RGB Light is already flashing then skip the reset step.
         </Text>
         <Text
           style={{
@@ -98,7 +115,7 @@ function Fan_Reset() {
             Power Button
           </Text>
           <Image
-            source={require("../../assets/Unfilled/power-off.png")}
+            source={require("../../../assets/Unfilled/power-off.png")}
           ></Image>
         </View>
         <View style={{ flexDirection: "row" }}>
@@ -114,11 +131,14 @@ function Fan_Reset() {
           >
             LED WIFI
           </Text>
-          <Image source={require("../../assets/Unfilled/wifi.png")}></Image>
+          <Image source={require("../../../assets/Unfilled/wifi.png")}></Image>
         </View>
       </View>
       <View style={{ marginTop: 90 }}>
         <Pressable
+          onPress={()=>{
+            navigation.navigate("Fan_Awaiting")
+          }}
           style={{
             alignItems: "center",
             paddingVertical: 10,

@@ -30,7 +30,7 @@ export const imageStyles = StyleSheet.create({
   },
   input: {
     padding: 10,
-    width: "80%",
+    width: "100%",
     fontWeight: "100",
   },
   svgImage: {
@@ -39,8 +39,6 @@ export const imageStyles = StyleSheet.create({
   duplicateIcon: {
     width: 20,
     height: 20,
-    borderWidth: 1,
-    backgroundColor: "grey",
     marginHorizontal: 5,
   },
   ButtonGap: {
@@ -76,7 +74,7 @@ export const imageStyles = StyleSheet.create({
   newUserSignUp: {
     flexDirection: "row",
     alignSelf: "center",
-    marginTop: 50,
+    marginTop: 40,
   },
   signUpText:{
     fontWeight: "900"

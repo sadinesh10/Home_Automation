@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import LoginScreen from "../Authentication/LoginScreen";
 import { imageStyles } from "../Authentication/Authentication_util";
 import { useNavigation } from "@react-navigation/native";
 
@@ -18,7 +17,21 @@ function Add_Device_Authentication() {
 
   return (
     <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
-      <Heading />
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity onPress={()=>{
+          navigation.navigate("Select_Device")
+        }}>
+          <Image
+            style={{ margin: 25 }}
+
+            source={require("../../assets/Unfilled/arrow-back-fill.png")}
+          ></Image>
+        </TouchableOpacity>
+
+        <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
+          Add Device
+        </Text>
+      </View>
       <View>
         <Text
           style={{
