@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, TouchableOpacityBase } from "react-native";
 import { Image, Pressable, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { imageStyles } from "../Authentication/Authentication_util";
@@ -108,6 +108,8 @@ function Choose_Icon() {
               >
                 <View
                   style={{
+                    width: 50,
+                    height:50,
                     alignItems: "center",
                     marginVertical: 15,
                     borderRadius: 12,

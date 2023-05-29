@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   Modal,
@@ -13,52 +13,56 @@ import { G, Path, Rect, Svg } from "react-native-svg";
 import Schedules_List from "./Schedule/Schedules_List";
 import Device_Information from "./Setttings/Settings";
 import Settings from "./Setttings/Settings";
+import Patterns from "./Patterns/Patterns";
 
 function Living_Room_Home_Screen() {
   const navigation = useNavigation();
   const [modal, setModal] = useState(false);
   const [schedule, setSchedule] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const [settings, setSettings] = useState(false);
+  const [patterns, setPatterns] = useState(false);
   const array2 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   const array = [
     {
       id: 1,
       name: "Light 1",
-      svg: (select) => <Light1 tint={select ? "#FFFFFF" : "#707070"} />,
+      svg: ({ select }) => <Light1 tint={select ? "#FFFFFF" : "#707070"} />,
       select: false,
     },
     {
       id: 2,
       name: "Light 2",
-      svg: (select) => <Light2 tint={select ? "#FFFFFF" : "#707070"} />,
+      svg: ({ select }) => <Light2 tint={select ? "#FFFFFF" : "#707070"} />,
       select: false,
     },
     {
       id: 3,
       name: "Light 3",
-      svg: (select) => <Light3 tint={select ? "#FFFFFF" : "#707070"} />,
+      svg: ({ select }) => <Light3 tint={select ? "#FFFFFF" : "#707070"} />,
       select: false,
     },
     {
       id: 4,
       name: "Bulb 1",
-      svg: (select) => <Bulb1 tint={select ? "#FFFFFF" : "#707070"} />,
+      svg: ({ select }) => <Bulb1 tint={select ? "#FFFFFF" : "#707070"} />,
       select: false,
     },
     {
       id: 5,
       name: "Bulb 2",
-      svg: (select) => <Bulb2 tint={select ? "#FFFFFF" : "#707070"} />,
+      svg: ({ select }) => <Bulb2 tint={select ? "#FFFFFF" : "#707070"} />,
       select: false,
     },
     {
       id: 6,
       name: "Bulb 3",
-      svg: (select) => <Bulb3 tint={select ? "#FFFFFF" : "#707070"} />,
+      svg: ({ select }) => <Bulb3 tint={select ? "#FFFFFF" : "#707070"} />,
       select: false,
     },
   ];
-  const array1 = [
+  const menusBaseArray = [
     {
       id: 1,
       name: "Leave Off",
@@ -208,24 +212,28 @@ function Living_Room_Home_Screen() {
       },
     },
   ];
-  const [select, setSelect] = useState(array);
-  const onSelect = (item) => {
-    const newItem = select.map((val) => {
-      if (val.select == true) {
-        return { ...val, select: false };
-      }
-      if (val.id == item.id) {
-        return { ...val, select: !val.select };
-      } else {
-        return val;
-      }
-    });
+  const [menus, setMenus] = useState(menusBaseArray);
 
-    setSelect(newItem);
+  const onSelect = (item, index) => {
+    setSelectedIndex(index);
   };
+  useEffect(() => {
+    const menusToUpdate = [...menusBaseArray];
+
+    if (
+      selectedIndex == 0 ||
+      selectedIndex == 1 ||
+      selectedIndex == 3 ||
+      selectedIndex == 4
+    ) {
+      setMenus(menusToUpdate.filter((value, index) => index != 1));
+    } else {
+      setMenus(menusToUpdate);
+    }
+  }, [selectedIndex]);
   return (
     <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
-      {!schedule && !settings && (
+      {!schedule && !settings && !patterns && (
         <View>
           <ImageBackground
             style={{ width: "100%", height: 200 }}
@@ -268,17 +276,20 @@ function Living_Room_Home_Screen() {
             <View
               style={{
                 marginTop: 30,
-                marginHorizontal: 20,
+                marginHorizontal: 5,
                 flexDirection: "row",
-                height: 60,
+                height: 70,
               }}
               horizontal={true}
             >
-              {select.map((item, index) => {
+              {array.map((item, index) => {
                 return (
                   <TouchableOpacity
                     onPress={() => {
-                      onSelect(item);
+                      onSelect(item, index);
+                    }}
+                    style={{
+                      marginHorizontal: 20,
                     }}
                   >
                     <View>
@@ -287,19 +298,22 @@ function Living_Room_Home_Screen() {
                           borderRadius: 10,
                           width: 50,
                           height: 50,
-                          backgroundColor: item.select
-                            ? "#1a8ae5"
-                            : "#ECECECB3",
-                          padding: 15,
-                          marginRight: 40,
+                          backgroundColor:
+                            selectedIndex == index ? "#1a8ae5" : "#ECECECB3",
                         }}
                         key={item.id}
                       >
-                        {item.svg(item.select)}
+                        <View
+                          style={{
+                            flex: 1,
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <item.svg select={selectedIndex == index} />
+                        </View>
                       </View>
-                      <Text style={{ margin: 5, alignItems: "center" }}>
-                        {item.name}
-                      </Text>
+                      <Text style={{ alignSelf: "center" }}>{item.name}</Text>
                     </View>
                   </TouchableOpacity>
                 );
@@ -312,7 +326,7 @@ function Living_Room_Home_Screen() {
 
       {schedule && <Schedules_List onBackPress={() => setSchedule()} />}
       {settings && <Settings onBackPress={() => setSettings()} />}
-
+      {patterns && <Patterns onBackPress={() => setPatterns()} />}
       <View
         style={{
           flexDirection: "row",
@@ -324,7 +338,7 @@ function Living_Room_Home_Screen() {
           width: "100%",
         }}
       >
-        {array1.map((item, index) => {
+        {menus.map((item, index) => {
           return (
             <TouchableOpacity
               onPress={() => {
@@ -332,16 +346,25 @@ function Living_Room_Home_Screen() {
                   setModal(true);
                   setSchedule(false);
                   setSettings(false);
+                  setPatterns(false);
+                }
+                if (item.name == "Pattern") {
+                  setPatterns(true);
+                  setSettings(false);
+                  setSchedule(false);
+                  setModal(false);
                 }
                 if (item.name == "Schedule") {
                   setSchedule(true);
                   setSettings(false);
                   setModal(false);
+                  setPatterns(false);
                 }
                 if (item.name == "Settings") {
                   setSettings(true);
                   setSchedule(false);
                   setModal(false);
+                  setPatterns(false);
                 }
               }}
               key={index}

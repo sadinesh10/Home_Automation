@@ -8,7 +8,7 @@ import ResetPassword from "./Screens/Authentication/ResetPassword";
 import ForgotPassword from "./Screens/Authentication/ForgotPassword";
 import ForgotOtp from "./Screens/Authentication/ForgotOtp";
 import { NavigationContainer } from "@react-navigation/native";
-import StackNavigation from "./Navigation/StackNavigation";
+import StackNavigation from "./Navigation/LoginNavigation";
 import Home from "./Screens/HomeScreen/Home";
 import CustomSlider from "./Screens/HomeScreen/CustomSlider";
 import ButtomNav from "./Navigation/ButtomNavigation";
@@ -22,6 +22,7 @@ import Selected_Kitchen_Device from "./Screens/Add_Scenes/Select_Device/Selected
 import Living_Room_Home_Screen from "./Screens/Living_Room/Living_Room_Home_Screen";
 import Schedules_List from "./Screens/Living_Room/Schedule/Schedules_List";
 import Kitchen_Home_Screen from "./Screens/Kitchen/Kitchen_Home_Screen";
+import LoginNavigation from "./Navigation/LoginNavigation";
 
 
 export default function App() {
@@ -35,12 +36,13 @@ export default function App() {
             {/* <ButtomNav /> */}
             {/* <CustomSlider/> */}
             {/* <Home/> */}
-            {/* <StackNavigation /> */}
             {/* <Switch_Reset/> */}
             {/* <Selected_Kitchen_Device/> */}
-            <Living_Room_Home_Screen/>
+            {/* <Living_Room_Home_Screen/> */}
             {/* <Schedules_List/> */}
             {/* <Kitchen_Home_Screen/> */}
+            <LoginNavigation/>
+
             <StatusBar
               translucent={false}
               style="auto"

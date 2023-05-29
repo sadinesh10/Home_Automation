@@ -23,7 +23,7 @@ function NotificationScreem() {
         <View style={{ flexDirection: "row", flex: 1 }}>
           <Pressable
             onPress={() => {
-              navigation.navigate("TabHome");
+              navigation.navigate("HomeScreen");
             }}
           >
             <Image

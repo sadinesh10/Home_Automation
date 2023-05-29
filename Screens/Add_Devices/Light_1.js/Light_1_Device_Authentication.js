@@ -9,6 +9,12 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { imageStyles } from "../../Authentication/Authentication_util";
+import { BackPressArrow } from "../Heading";
+import {
+  PasswordLockIcon,
+  WifiIcon,
+  eyeIcon,
+} from "../Add_Device_Authentication";
 function Light_1_Device_Authentication() {
   const navigation = useNavigation();
   const [seePassword, setSeePassword] = useState(true);
@@ -21,10 +27,7 @@ function Light_1_Device_Authentication() {
             navigation.navigate("Select_Device");
           }}
         >
-          <Image
-            style={{ margin: 25 }}
-            source={require("../../../assets/Unfilled/arrow-back-fill.png")}
-          ></Image>
+          <BackPressArrow />
         </TouchableOpacity>
 
         <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
@@ -45,17 +48,14 @@ function Light_1_Device_Authentication() {
       </View>
       <View style={{ marginTop: 20 }}>
         <View style={imageStyles.wrapperInput}>
-          <Image source={require("../../../assets/Unfilled/wifi.png")}></Image>
+          <WifiIcon />
           <TextInput
             style={imageStyles.input}
             placeholder="SSID Meghdoot"
           ></TextInput>
         </View>
         <View style={imageStyles.wrapperInput}>
-          <Image
-            style={{ marginLeft: 5, marginRight: 2 }}
-            source={require("../../../assets/Unfilled/lock-line.png")}
-          ></Image>
+          <PasswordLockIcon />
 
           <TextInput
             style={imageStyles.input}
@@ -66,13 +66,7 @@ function Light_1_Device_Authentication() {
             style={imageStyles.wrapperIcon}
             onPress={() => setSeePassword(!seePassword)}
           >
-            <Image
-              source={
-                seePassword
-                  ? require("../../../assets/Unfilled/eye.png")
-                  : require("../../../assets/filled/eye.png")
-              }
-            />
+            {seePassword ? eyeIcon() : eyeIcon()}
           </TouchableOpacity>
         </View>
         <View style={{ width: "90%" }}>

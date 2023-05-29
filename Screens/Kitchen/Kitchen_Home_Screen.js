@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ImageBackground,
   Modal,
@@ -10,41 +10,51 @@ import {
   View,
 } from "react-native";
 import { Circle, G, Path, Rect, Svg } from "react-native-svg";
+import ListCustomSlider from "../HomeScreen/ListCiustomSlider";
+import CustomSlider from "./CustomSlider";
+import Schedules_List from "../Living_Room/Schedule/Schedules_List";
+import Settings from "../Living_Room/Setttings/Settings";
+import Interval_Time from "./Interval_Time/Interval_Time";
+
 function Kitchen_Home_Screen() {
   const navigation = useNavigation();
   const [modal, setModal] = useState(false);
   const [schedule, setSchedule] = useState(false);
+  const [intervalTime, setIntervalTime] = useState(false);
   const [settings, setSettings] = useState(false);
+
   const array2 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
   const array = [
     {
       id: 1,
-      name: "Light 1",
+      name: "Fan 1",
       svg: ({ select }) => <Fan1 tint={select ? "#FFFFFF" : "#707070"} />,
     },
     {
       id: 2,
-      name: "Light 2",
+      name: "Plug 1",
       svg: ({ select }) => <Plug1 tint={select ? "#FFFFFF" : "#707070"} />,
     },
     {
       id: 3,
-      name: "Light 3",
+      name: "Switch 1",
       svg: ({ select }) => <Switch1 tint={select ? "#FFFFFF" : "#707070"} />,
     },
     {
       id: 4,
-      name: "Bulb 1",
+      name: "Switch 2",
       svg: ({ select }) => <Switch2 tint={select ? "#FFFFFF" : "#707070"} />,
     },
     {
       id: 5,
-      name: "Bulb 2",
+      name: "Switch 3",
       svg: ({ select }) => <Switch3 tint={select ? "#FFFFFF" : "#707070"} />,
     },
   ];
-  const [selectedIndex, setSelectedIndex] = useState(false);
-  const array1 = [
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [switchSelected, setSwitchSelected] = useState(false);
+  const menusBaseArray = [
     {
       id: 1,
       name: "Leave Off",
@@ -67,74 +77,20 @@ function Kitchen_Home_Screen() {
     },
     {
       id: 2,
-      name: "Pattern",
+      name: "Interval Time",
       svg: () => {
         return (
           <Svg
             xmlns="http://www.w3.org/2000/svg"
-            width={25.2}
-            height={25.2}
-            viewBox="0 0 25.2 25.2"
+            width="25.186"
+            height="25.127"
+            viewBox="0 0 25.186 25.127"
           >
-            <G transform="translate(-4283 -17672)">
-              <G
-                transform="translate(4283 17672)"
-                fill="none"
-                stroke="#707070"
-                strokeWidth={2}
-              >
-                <Rect width={11.2} height={14} rx={1.5} stroke="none" />
-                <Rect
-                  x={1}
-                  y={1}
-                  width={9.2}
-                  height={12}
-                  rx={0.5}
-                  fill="none"
-                />
-              </G>
-              <G
-                transform="translate(4297 17672)"
-                fill="none"
-                stroke="#707070"
-                strokeWidth={2}
-              >
-                <Rect width={11.2} height={10} rx={1.5} stroke="none" />
-                <Rect x={1} y={1} width={9.2} height={8} rx={0.5} fill="none" />
-              </G>
-              <G
-                transform="translate(4283 17688)"
-                fill="none"
-                stroke="#707070"
-                strokeWidth={2}
-              >
-                <Rect width={11.2} height={9.2} rx={1.5} stroke="none" />
-                <Rect
-                  x={1}
-                  y={1}
-                  width={9.2}
-                  height={7.2}
-                  rx={0.5}
-                  fill="none"
-                />
-              </G>
-              <G
-                transform="translate(4297 17684)"
-                fill="none"
-                stroke="#707070"
-                strokeWidth={2}
-              >
-                <Rect width={11.2} height={13.2} rx={1.5} stroke="none" />
-                <Rect
-                  x={1}
-                  y={1}
-                  width={9.2}
-                  height={11.2}
-                  rx={0.5}
-                  fill="none"
-                />
-              </G>
-            </G>
+            <Path
+              d="M17.9,7.475a7.274,7.274,0,0,1,2.212,5.338A7.274,7.274,0,0,1,17.9,18.152a7.274,7.274,0,0,1-5.338,2.212,7.13,7.13,0,0,1-5.309-2.242l5.309-5.309V5.263A7.274,7.274,0,0,1,17.9,7.475ZM12.593.25A12.134,12.134,0,0,1,21.5,3.936a12.1,12.1,0,0,1,3.686,8.877A12.1,12.1,0,0,1,21.5,21.691a12.134,12.134,0,0,1-8.906,3.686,12.134,12.134,0,0,1-8.906-3.686A12.1,12.1,0,0,1,0,12.814,12.1,12.1,0,0,1,3.686,3.936,12.137,12.137,0,0,1,12.593.25Zm0,22.65A9.688,9.688,0,0,0,19.7,19.95a9.722,9.722,0,0,0,2.949-7.137A9.722,9.722,0,0,0,19.7,5.677a9.688,9.688,0,0,0-7.108-2.949A9.688,9.688,0,0,0,5.486,5.677a9.721,9.721,0,0,0-2.949,7.137A9.721,9.721,0,0,0,5.486,19.95,9.688,9.688,0,0,0,12.593,22.9Z"
+              transform="translate(0 -0.25)"
+              fill="#707070"
+            />
           </Svg>
         );
       },
@@ -163,6 +119,7 @@ function Kitchen_Home_Screen() {
           </Svg>
         );
       },
+
     },
     {
       id: 4,
@@ -190,13 +147,25 @@ function Kitchen_Home_Screen() {
       },
     },
   ];
-  const [select, setSelect] = useState(array);
+  const [menus, setMenus] = useState(menusBaseArray);
+
   const onSelect = (item, index) => {
     setSelectedIndex(index);
   };
+
+  useEffect(() => {
+    const menusToUpdate = [...menusBaseArray];
+
+    if (selectedIndex == 0) {
+      setMenus(menusToUpdate.filter((value, index) => index != 1));
+    } else {
+      setMenus(menusToUpdate);
+    }
+  }, [selectedIndex]);
+
   return (
     <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
-      {!schedule && !settings && (
+      {!schedule && !settings && !intervalTime && (
         <View>
           <ImageBackground
             style={{ width: "100%", height: 200 }}
@@ -239,20 +208,20 @@ function Kitchen_Home_Screen() {
             <View
               style={{
                 marginTop: 30,
-                marginHorizontal: 20,
+                marginHorizontal: 5,
                 flexDirection: "row",
-                height: 60,
+                height: 70,
               }}
               horizontal={true}
             >
-              {select.map((item, index) => {
+              {array.map((item, index) => {
                 return (
                   <TouchableOpacity
                     onPress={() => {
                       onSelect(item, index);
                     }}
                     style={{
-                      marginRight: 40,
+                      marginHorizontal: 20,
                     }}
                   >
                     <View>
@@ -263,27 +232,384 @@ function Kitchen_Home_Screen() {
                           height: 50,
                           backgroundColor:
                             selectedIndex == index ? "#1a8ae5" : "#ECECECB3",
-                          padding: 15,
                         }}
                         key={item.id}
                       >
-                        <item.svg select={selectedIndex == index} />
+                        <View
+                          style={{
+                            flex: 1,
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <item.svg select={selectedIndex == index} />
+                        </View>
                       </View>
-                      <Text style={{ margin: 5, alignItems: "center" }}>
-                        {item.name}
-                      </Text>
+                      <Text style={{ alignSelf: "center" }}>{item.name}</Text>
                     </View>
                   </TouchableOpacity>
                 );
               })}
             </View>
           </ScrollView>
-          <View style={{ height: "54%" }}></View>
+
+          {array[selectedIndex].id == 1 ? (
+            <View style={{ height: "54%" }}>
+              <View style={{ marginHorizontal: 15, marginVertical: 15 }}>
+                <Text style={{ fontSize: 18, fontWeight: "900" }}>Power</Text>
+                <View style={{}}>
+                  <View
+                    style={{
+                      width: "30%",
+                      marginTop: 10,
+                      height: 40,
+                      backgroundColor: "#ECECECB3",
+                      borderRadius: 20,
+                      alignItems: "center",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <TouchableOpacity
+                      style={{
+                        width: "50%",
+                        height: 30,
+                        backgroundColor: switchSelected
+                          ? "#ECECECb3"
+                          : "#1a8ae5",
+                        borderRadius: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onPress={() => {
+                        setSwitchSelected(false);
+                      }}
+                    >
+                      <Text
+                        style={{ color: switchSelected ? "#000000" : "white" }}
+                      >
+                        On
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{
+                        width: "50%",
+                        height: 30,
+                        backgroundColor: switchSelected
+                          ? "#1a8ae5"
+                          : "#ECECECB3",
+                        borderRadius: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onPress={() => {
+                        setSwitchSelected(true);
+                      }}
+                    >
+                      <Text
+                        style={{ color: switchSelected ? "white" : "#000000" }}
+                      >
+                        Off
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: 20,
+                }}
+              >
+                <Svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="68.497"
+                  height="68.495"
+                  viewBox="0 0 18.497 18.495"
+                >
+                  <G transform="translate(0.155 0.149)">
+                    <Path
+                      d="M16.5,5.645l-.029-.012c-.651-.249-1.328.278-2.184.947A11.436,11.436,0,0,1,11.72,8.217c-.009-.027-.021-.054-.031-.081-.016-.043-.031-.087-.049-.129-.032-.076-.069-.151-.108-.224l-.017-.03c-.036-.066-.075-.13-.117-.192l-.025-.036c-.025-.036-.049-.073-.076-.108,1.5-1.94,1.939-3.9,1.253-5.7A3.251,3.251,0,0,0,9.424,0C8.009-.036,6.22.47,5.64,1.691l-.012.029c-.25.652.279,1.328.947,2.184A11.45,11.45,0,0,1,8.211,6.468c-.031.01-.061.023-.092.035s-.08.028-.118.045c-.077.033-.152.07-.226.109l-.027.016q-.1.055-.195.118l-.036.025c-.037.025-.074.049-.109.076-1.939-1.5-3.9-1.935-5.7-1.25A3.251,3.251,0,0,0,0,8.769c-.044,1.415.465,3.2,1.687,3.783l.029.013c.652.249,1.328-.279,2.184-.947A11.456,11.456,0,0,1,6.461,9.983c.009.027.02.053.03.08.016.043.031.087.049.129.033.077.069.152.109.226l.008.015q.059.107.127.208l.019.027c.027.04.054.08.084.119-1.5,1.938-1.934,3.9-1.249,5.7a3.251,3.251,0,0,0,3.126,1.71l.17,0c1.386,0,3.056-.516,3.613-1.689,0-.01.009-.019.013-.029.249-.652-.279-1.328-.947-2.184a11.443,11.443,0,0,1-1.636-2.567c.029-.01.056-.022.085-.032s.082-.029.122-.046c.077-.033.152-.069.226-.109l.016-.009c.07-.038.139-.08.206-.125l.032-.022c.039-.027.078-.052.115-.081,1.94,1.5,3.9,1.938,5.7,1.253a3.251,3.251,0,0,0,1.71-3.126C18.232,8.013,17.723,6.225,16.5,5.645Zm-6.166,4.973c-.043.036-.089.069-.135.1l-.032.021q-.056.037-.114.069L10,10.838c-.03.016-.061.03-.092.044s-.052.024-.078.035l-.011,0a1.97,1.97,0,0,1-.446.119h0a1.936,1.936,0,0,1-1.8-.692l-.006-.007c-.035-.043-.068-.088-.1-.133l-.021-.033c-.024-.037-.047-.075-.069-.113l-.029-.052c-.016-.03-.03-.061-.044-.092s-.024-.051-.035-.078l-.007-.018a1.972,1.972,0,0,1-.117-.441v0a1.937,1.937,0,0,1,.692-1.8l.008-.007c.042-.035.087-.068.132-.1l.035-.023c.036-.024.074-.046.112-.068l.054-.03c.03-.016.061-.03.091-.044s.052-.024.078-.035l.032-.012a1.974,1.974,0,0,1,.429-.112h0a1.935,1.935,0,0,1,1.791.692l.009.012q.051.062.1.128l.025.038c.023.035.045.071.065.108.011.019.021.038.032.057s.028.058.042.087.026.054.037.082l.008.021a1.98,1.98,0,0,1,.115.437v0a1.935,1.935,0,0,1-.693,1.793ZM7.213,3.406c-.422-.541-.9-1.152-.833-1.386C6.744,1.288,8.033.769,9.4.813a2.594,2.594,0,0,1,2.4,1.2A5.048,5.048,0,0,1,10.71,6.851a2.756,2.756,0,0,0-1.62-.526c-.023,0-.045,0-.068,0A11.706,11.706,0,0,0,7.213,3.406ZM3.4,10.98c-.541.422-1.152.9-1.386.833C1.284,11.449.766,10.158.808,8.794A2.6,2.6,0,0,1,2,6.4,5.045,5.045,0,0,1,6.842,7.48,2.756,2.756,0,0,0,6.316,9.1c0,.025,0,.049,0,.073A11.708,11.708,0,0,0,3.4,10.98Zm7.573,3.811c.422.541.9,1.152.833,1.386-.364.732-1.657,1.246-3.019,1.207a2.6,2.6,0,0,1-2.4-1.2,5.046,5.046,0,0,1,1.084-4.838,2.756,2.756,0,0,0,1.614.523c.026,0,.051,0,.076,0A11.7,11.7,0,0,0,10.975,14.791ZM17.38,9.4a2.6,2.6,0,0,1-1.2,2.4,5.049,5.049,0,0,1-4.843-1.087A2.756,2.756,0,0,0,11.865,9.1c0-.024,0-.047,0-.071a11.694,11.694,0,0,0,2.925-1.81c.541-.422,1.156-.9,1.386-.833C16.9,6.748,17.423,8.04,17.38,9.4Z"
+                      transform="translate(0 0)"
+                      fill="#1a8ae5"
+                      stroke-width="0.3"
+                    />
+                    <Circle
+                      cx="0.988"
+                      cy="0.988"
+                      r="0.988"
+                      transform="translate(8.102 8.11)"
+                      fill="#1a8ae5"
+                      stroke-width="0.3"
+                    />
+                  </G>
+                </Svg>
+              </View>
+              <View style={{ margin: 30 }}>
+                <Text style={{ marginBottom: 10 }}>Speed</Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginTop: 10,
+                    alignItems: "center",
+                  }}
+                >
+                  <View
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      borderRadius: 100,
+                      padding: 3,
+                      marginRight: 2,
+                    }}
+                  >
+                    <Svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                    >
+                      <G transform="translate(-25 -615)">
+                        <G transform="translate(25.286 615)">
+                          <Circle
+                            cx="7"
+                            cy="7"
+                            r="7"
+                            transform="translate(-0.286)"
+                          />
+                          <Path
+                            d="M11.332,8.5H4.9a.485.485,0,0,0,0,.955h6.43a.485.485,0,0,0,0-.955Z"
+                            transform="translate(-1.251 -1.5)"
+                            fill="rgba(0,0,0,0.7)"
+                          />
+                        </G>
+                      </G>
+                    </Svg>
+                  </View>
+                  <CustomSlider />
+                  <View
+                    style={{
+                      backgroundColor: "#FFFFFF",
+                      borderRadius: 100,
+                      padding: 3,
+                      marginLeft: 2,
+                    }}
+                  >
+                    <Svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                    >
+                      <G transform="translate(-321 -615)">
+                        <G transform="translate(321 615)">
+                          <Circle cx="7" cy="7" r="7" />
+                          <Path
+                            d="M8.713,7.548V4.5H7.776V7.548H4.5v.871H7.776v3.048h.936V8.419h3.276V7.548Z"
+                            transform="translate(-1.278 -0.756)"
+                            fill="rgba(0,0,0,0.7)"
+                          />
+                        </G>
+                      </G>
+                    </Svg>
+                  </View>
+                </View>
+              </View>
+            </View>
+          ) : null}
+          {array[selectedIndex].id == 2 ? (
+            <View style={{ height: "54%" }}>
+              <View style={{ marginHorizontal: 15, marginVertical: 15 }}>
+                <Text style={{ fontSize: 18, fontWeight: "900" }}>Power</Text>
+                <View style={{}}>
+                  <View
+                    style={{
+                      width: "30%",
+                      marginTop: 10,
+                      height: 40,
+                      backgroundColor: "#ECECECB3",
+                      borderRadius: 20,
+                      alignItems: "center",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <TouchableOpacity
+                      style={{
+                        width: "50%",
+                        height: 30,
+                        backgroundColor: switchSelected
+                          ? "#ECECECb3"
+                          : "#1a8ae5",
+                        borderRadius: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onPress={() => {
+                        setSwitchSelected(false);
+                      }}
+                    >
+                      <Text
+                        style={{ color: switchSelected ? "#000000" : "white" }}
+                      >
+                        On
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{
+                        width: "50%",
+                        height: 30,
+                        backgroundColor: switchSelected
+                          ? "#1a8ae5"
+                          : "#ECECECB3",
+                        borderRadius: 20,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                      onPress={() => {
+                        setSwitchSelected(true);
+                      }}
+                    >
+                      <Text
+                        style={{ color: switchSelected ? "white" : "#000000" }}
+                      >
+                        Off
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  paddingTop: 20,
+                }}
+              >
+                <Svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40.696"
+                  height="50.494"
+                  viewBox="0 0 10.696 18.494"
+                >
+                  <Path
+                    d="M18.1,6.149h-.65V2.25h-1.3v3.9h-3.9V2.25h-1.3v3.9H10.3A1.3,1.3,0,0,0,9,7.448v3.9A5.2,5.2,0,0,0,13.548,16.5v3.944h1.3V16.5A5.2,5.2,0,0,0,19.4,11.347v-3.9A1.3,1.3,0,0,0,18.1,6.149Zm0,5.2a3.9,3.9,0,1,1-7.8,0v-3.9h7.8Z"
+                    transform="translate(-8.85 -2.1)"
+                    fill="#1a8ae5"
+                    stroke-width="0.3"
+                  />
+                </Svg>
+              </View>
+            </View>
+          ) : null}
+          {array[selectedIndex].id == 3 ? (
+            <View style={{ height: "40%" }}>
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <View>
+                  <Svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40.04"
+                    height="40.885"
+                    viewBox="0 0 14.04 14.885"
+                  >
+                    <G transform="translate(-2.894 -1.85)">
+                      <Path
+                        d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                        transform="translate(0 -2.326)"
+                        fill="#1a8ae5"
+                        stroke-width="0.8"
+                      />
+                      <Path
+                        d="M16.875,2.25h1.006V9.292H16.875Z"
+                        transform="translate(-7.464 0)"
+                        fill="#1a8ae5"
+                        stroke-width="0.8"
+                      />
+                    </G>
+                  </Svg>
+                </View>
+                <Text style={{ alignSelf: "center" }}>Switch 1</Text>
+              </View>
+            </View>
+          ) : null}
+          {array[selectedIndex].id == 4 ? (
+            <View style={{ height: "40%" }}>
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "row",
+                }}
+              >
+                <View style={{ marginRight: 20 }}>
+                  <View>
+                    <Svg
+                      style={{ alignSelf: "center" }}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40.04"
+                      height="40.885"
+                      viewBox="0 0 14.04 14.885"
+                    >
+                      <G transform="translate(-2.894 -1.85)">
+                        <Path
+                          d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                          transform="translate(0 -2.326)"
+                          fill="#1a8ae5"
+                          stroke-width="0.8"
+                        />
+                        <Path
+                          d="M16.875,2.25h1.006V9.292H16.875Z"
+                          transform="translate(-7.464 0)"
+                          fill="#1a8ae5"
+                          stroke-width="0.8"
+                        />
+                      </G>
+                    </Svg>
+                  </View>
+                  <Text style={{ alignSelf: "center" }}>Switch 0.1</Text>
+                </View>
+                <View>
+                  <View>
+                    <Svg
+                      style={{ alignSelf: "center" }}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40.04"
+                      height="40.885"
+                      viewBox="0 0 14.04 14.885"
+                    >
+                      <G transform="translate(-2.894 -1.85)">
+                        <Path
+                          d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                          transform="translate(0 -2.326)"
+                          fill="#1a8ae5"
+                          stroke-width="0.8"
+                        />
+                        <Path
+                          d="M16.875,2.25h1.006V9.292H16.875Z"
+                          transform="translate(-7.464 0)"
+                          fill="#1a8ae5"
+                          stroke-width="0.8"
+                        />
+                      </G>
+                    </Svg>
+                  </View>
+                  <Text style={{ alignSelf: "center" }}>Switch 0.2</Text>
+                </View>
+              </View>
+            </View>
+          ) : null}
+          {array[selectedIndex].id == 5 ? <Switch3Screen /> : null}
         </View>
       )}
 
       {schedule && <Schedules_List onBackPress={() => setSchedule()} />}
       {settings && <Settings onBackPress={() => setSettings()} />}
+      {intervalTime && <Interval_Time onBackPress={() => setIntervalTime()} />}
 
       <View
         style={{
@@ -296,33 +622,45 @@ function Kitchen_Home_Screen() {
           width: "100%",
         }}
       >
-        {array1.map((item, index) => {
+        {menus.map((item, index) => {
           return (
-            <TouchableOpacity
-              onPress={() => {
-                if (item.name == "Leave Off") {
-                  setModal(true);
-                  setSchedule(false);
-                  setSettings(false);
-                }
-                if (item.name == "Schedule") {
-                  setSchedule(true);
-                  setSettings(false);
-                  setModal(false);
-                }
-                if (item.name == "Settings") {
-                  setSettings(true);
-                  setSchedule(false);
-                  setModal(false);
-                }
-              }}
-              key={index}
-            >
-              <View style={{ alignSelf: "center", marginBottom: 10 }}>
-                {item.svg(index == selectedIndex)}
-              </View>
-              <Text> {item.name}</Text>
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity
+                onPress={() => {
+                  if (item.name == "Leave Off") {
+                    setModal(true);
+                    setSchedule(false);
+                    setSettings(false);
+                    setIntervalTime(false);
+                  }
+                  if (item.name == "Schedule") {
+                    setSchedule(true);
+                    setSettings(false);
+                    setModal(false);
+                    setIntervalTime(false);
+                  }
+                  if (item.name == "Settings") {
+                    setSettings(true);
+                    setSchedule(false);
+                    setIntervalTime(false);
+
+                    setModal(false);
+                  }
+                  if (item.name == "Interval Time") {
+                    setIntervalTime(true);
+                    setSettings(false);
+                    setSchedule(false);
+                    setModal(false);
+                  }
+                }}
+                key={index}
+              >
+                <View style={{ alignSelf: "center", marginBottom: 10 }}>
+                  {item.svg()}
+                </View>
+                <Text> {item.name}</Text>
+              </TouchableOpacity>
+            </View>
           );
         })}
       </View>
@@ -436,31 +774,239 @@ function Kitchen_Home_Screen() {
 
 export default Kitchen_Home_Screen;
 
+function Switch3Screen() {
+  return (
+    <View style={{ height: "40%" }}>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
+        }}
+      >
+        <View style={{ marginRight: 20 }}>
+          <View>
+            <Svg
+              style={{ alignSelf: "center" }}
+              xmlns="http://www.w3.org/2000/svg"
+              width="40.04"
+              height="40.885"
+              viewBox="0 0 14.04 14.885"
+            >
+              <G transform="translate(-2.894 -1.85)">
+                <Path
+                  d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                  transform="translate(0 -2.326)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+                <Path
+                  d="M16.875,2.25h1.006V9.292H16.875Z"
+                  transform="translate(-7.464 0)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+              </G>
+            </Svg>
+          </View>
+          <Text style={{ alignSelf: "center" }}>Switch 0.1</Text>
+        </View>
+        <View>
+          <View>
+            <Svg
+              style={{ alignSelf: "center" }}
+              xmlns="http://www.w3.org/2000/svg"
+              width="40.04"
+              height="40.885"
+              viewBox="0 0 14.04 14.885"
+            >
+              <G transform="translate(-2.894 -1.85)">
+                <Path
+                  d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                  transform="translate(0 -2.326)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+                <Path
+                  d="M16.875,2.25h1.006V9.292H16.875Z"
+                  transform="translate(-7.464 0)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+              </G>
+            </Svg>
+          </View>
+          <Text style={{ alignSelf: "center" }}>Switch 0.2</Text>
+        </View>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "row",
+        }}
+      >
+        <View style={{ marginRight: 20 }}>
+          <View>
+            <Svg
+              style={{ alignSelf: "center" }}
+              xmlns="http://www.w3.org/2000/svg"
+              width="40.04"
+              height="40.885"
+              viewBox="0 0 14.04 14.885"
+            >
+              <G transform="translate(-2.894 -1.85)">
+                <Path
+                  d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                  transform="translate(0 -2.326)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+                <Path
+                  d="M16.875,2.25h1.006V9.292H16.875Z"
+                  transform="translate(-7.464 0)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+              </G>
+            </Svg>
+          </View>
+          <Text style={{ alignSelf: "center" }}>Switch 0.3</Text>
+        </View>
+        <View>
+          <View>
+            <Svg
+              style={{ alignSelf: "center" }}
+              xmlns="http://www.w3.org/2000/svg"
+              width="40.04"
+              height="40.885"
+              viewBox="0 0 14.04 14.885"
+            >
+              <G transform="translate(-2.894 -1.85)">
+                <Path
+                  d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                  transform="translate(0 -2.326)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+                <Path
+                  d="M16.875,2.25h1.006V9.292H16.875Z"
+                  transform="translate(-7.464 0)"
+                  fill="#1a8ae5"
+                  stroke-width="0.8"
+                />
+              </G>
+            </Svg>
+          </View>
+          <Text style={{ alignSelf: "center" }}>Switch 0.4</Text>
+        </View>
+      </View>
+    </View>
+  );
+}
+
 function Switch3({ tint = "#707070" }) {
   return (
-    <Svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16.04"
-      height="16.885"
-      viewBox="0 0 14.04 14.885"
-    >
-      <G transform="translate(-2.894 -1.85)">
-        <Path
-          d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
-          transform="translate(0 -2.326)"
-          fill="#707070"
-          stroke="#707070"
-          stroke-width="0.8"
-        />
-        <Path
-          d="M16.875,2.25h1.006V9.292H16.875Z"
-          transform="translate(-7.464 0)"
-          fill="#707070"
-          stroke="#707070"
-          stroke-width="0.8"
-        />
-      </G>
-    </Svg>
+    <View>
+      <View style={{ flexDirection: "row" }}>
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16.04"
+          height="16.885"
+          viewBox="0 0 14.04 14.885"
+        >
+          <G transform="translate(-2.894 -1.85)">
+            <Path
+              d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+              transform="translate(0 -2.326)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+            <Path
+              d="M16.875,2.25h1.006V9.292H16.875Z"
+              transform="translate(-7.464 0)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+          </G>
+        </Svg>
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16.04"
+          height="16.885"
+          viewBox="0 0 14.04 14.885"
+        >
+          <G transform="translate(-2.894 -1.85)">
+            <Path
+              d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+              transform="translate(0 -2.326)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+            <Path
+              d="M16.875,2.25h1.006V9.292H16.875Z"
+              transform="translate(-7.464 0)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+          </G>
+        </Svg>
+      </View>
+      <View style={{ flexDirection: "row" }}>
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16.04"
+          height="16.885"
+          viewBox="0 0 14.04 14.885"
+        >
+          <G transform="translate(-2.894 -1.85)">
+            <Path
+              d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+              transform="translate(0 -2.326)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+            <Path
+              d="M16.875,2.25h1.006V9.292H16.875Z"
+              transform="translate(-7.464 0)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+          </G>
+        </Svg>
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16.04"
+          height="16.885"
+          viewBox="0 0 14.04 14.885"
+        >
+          <G transform="translate(-2.894 -1.85)">
+            <Path
+              d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+              transform="translate(0 -2.326)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+            <Path
+              d="M16.875,2.25h1.006V9.292H16.875Z"
+              transform="translate(-7.464 0)"
+              fill={tint}
+              stroke={tint}
+              stroke-width="0.8"
+            />
+          </G>
+        </Svg>
+      </View>
+    </View>
   );
 }
 function Switch2({ tint = "#707070" }) {
@@ -476,15 +1022,15 @@ function Switch2({ tint = "#707070" }) {
           <Path
             d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
             transform="translate(0 -2.326)"
-            fill="#707070"
-            stroke="#707070"
+            fill={tint}
+            stroke={tint}
             stroke-width="0.8"
           />
           <Path
             d="M16.875,2.25h1.006V9.292H16.875Z"
             transform="translate(-7.464 0)"
-            fill="#707070"
-            stroke="#707070"
+            fill={tint}
+            stroke={tint}
             stroke-width="0.8"
           />
         </G>
@@ -499,15 +1045,15 @@ function Switch2({ tint = "#707070" }) {
           <Path
             d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
             transform="translate(0 -2.326)"
-            fill="#707070"
-            stroke="#707070"
+            fill={tint}
+            stroke={tint}
             stroke-width="0.8"
           />
           <Path
             d="M16.875,2.25h1.006V9.292H16.875Z"
             transform="translate(-7.464 0)"
-            fill="#707070"
-            stroke="#707070"
+            fill={tint}
+            stroke={tint}
             stroke-width="0.8"
           />
         </G>
@@ -528,15 +1074,15 @@ function Switch1({ tint = "#707070" }) {
         <Path
           d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
           transform="translate(0 -2.326)"
-          fill="#707070"
-          stroke="#707070"
+          fill={tint}
+          stroke={tint}
           stroke-width="0.8"
         />
         <Path
           d="M16.875,2.25h1.006V9.292H16.875Z"
           transform="translate(-7.464 0)"
-          fill="#707070"
-          stroke="#707070"
+          fill={tint}
+          stroke={tint}
           stroke-width="0.8"
         />
       </G>
@@ -555,8 +1101,8 @@ function Plug1({ tint = "#707070" }) {
       <Path
         d="M18.1,6.149h-.65V2.25h-1.3v3.9h-3.9V2.25h-1.3v3.9H10.3A1.3,1.3,0,0,0,9,7.448v3.9A5.2,5.2,0,0,0,13.548,16.5v3.944h1.3V16.5A5.2,5.2,0,0,0,19.4,11.347v-3.9A1.3,1.3,0,0,0,18.1,6.149Zm0,5.2a3.9,3.9,0,1,1-7.8,0v-3.9h7.8Z"
         transform="translate(-8.85 -2.1)"
-        fill="#707070"
-        stroke="#707070"
+        fill={tint}
+        stroke={tint}
         stroke-width="0.3"
       />
     </Svg>

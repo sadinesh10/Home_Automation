@@ -9,6 +9,7 @@ import {
 import Slider from "@react-native-community/slider";
 
 class ListCustomSlider extends Component {
+  
   state = {
     slideValue: 0,
   };

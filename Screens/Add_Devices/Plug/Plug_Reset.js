@@ -1,9 +1,12 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import Heading from "../Heading";
+import Heading, { BackPressArrow } from "../Heading";
 import { AntDesign } from "@expo/vector-icons";
 import { Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Circle, G, Path, Svg } from "react-native-svg";
+import { WifiIcon } from "../Add_Device_Authentication";
+
 function Plug_Reset() {
   const navigation = useNavigation();
   return (
@@ -16,10 +19,7 @@ function Plug_Reset() {
               console.log("hello");
             }}
           >
-            <Image
-              style={{ margin: 25 }}
-              source={require("../../../assets/Unfilled/arrow-back-fill.png")}
-            ></Image>
+            <BackPressArrow />
           </TouchableOpacity>
 
           <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
@@ -50,15 +50,19 @@ function Plug_Reset() {
           backgroundColor: "#ECECECE0",
         }}
       >
-        <Image
-          style={{
-            tintColor: "#1a8ae5",
-            width: 40,
-            height: 40,
-            resizeMode: "contain",
-          }}
-          source={require("../../../assets/Unfilled/plug.png")}
-        ></Image>
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="48.696"
+          height="48.494"
+          viewBox="0 0 10.696 18.494"
+        >
+          <Path
+            d="M18.1,6.149h-.65V2.25h-1.3v3.9h-3.9V2.25h-1.3v3.9H10.3A1.3,1.3,0,0,0,9,7.448v3.9A5.2,5.2,0,0,0,13.548,16.5v3.944h1.3V16.5A5.2,5.2,0,0,0,19.4,11.347v-3.9A1.3,1.3,0,0,0,18.1,6.149Zm0,5.2a3.9,3.9,0,1,1-7.8,0v-3.9h7.8Z"
+            transform="translate(-8.85 -2.1)"
+            fill="#1a8ae5"
+            stroke-width="0.3"
+          />
+        </Svg>
         <Text
           style={{
             fontSize: 16,
@@ -114,9 +118,27 @@ function Plug_Reset() {
           >
             Power Button
           </Text>
-          <Image
-            source={require("../../../assets/Unfilled/power-off.png")}
-          ></Image>
+          <Svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.04"
+            height="20.885"
+            viewBox="0 0 14.04 14.885"
+          >
+            <G transform="translate(-2.894 -1.85)">
+              <Path
+                d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                transform="translate(0 -2.326)"
+                fill="#707070"
+                stroke-width="0.8"
+              />
+              <Path
+                d="M16.875,2.25h1.006V9.292H16.875Z"
+                transform="translate(-7.464 0)"
+                fill="#707070"
+                stroke-width="0.8"
+              />
+            </G>
+          </Svg>
         </View>
         <View style={{ flexDirection: "row" }}>
           <Text
@@ -130,7 +152,7 @@ function Plug_Reset() {
           >
             LED WIFI
           </Text>
-          <Image source={require("../../../assets/Unfilled/wifi.png")}></Image>
+          <WifiIcon/>
         </View>
       </View>
       <View style={{ marginTop: 90 }}>

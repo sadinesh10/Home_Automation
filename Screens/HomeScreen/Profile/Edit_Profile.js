@@ -37,7 +37,7 @@ function Edit_Profile() {
             borderRadius: 100,
             marginLeft: 20,
           }}
-          source={require("../../../assets/Images/profile_image.png")}
+          source={require("../../../assets/Images/sruthi.png")}
         ></Image>
         <TouchableOpacity
           style={{

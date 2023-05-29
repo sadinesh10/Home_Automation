@@ -9,6 +9,8 @@ import { Image } from "react-native";
 import { Entypo, Feather } from "@expo/vector-icons";
 import AddMorenavigation from "./AddMorenavigation";
 import { useIsFocused } from "@react-navigation/native";
+import StackNavigation from "./StackNavigation";
+import { styles } from "./ButtomNavUtil";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,8 +25,7 @@ export default function ButtomNav() {
           tabBarShowLabel: false,
           tabBarHideOnKeyboard: true,
           tabBarStyle: {
-            height: 50,
-            backgroundColor: "#ECECEC",
+            ...styles
           },
         };
       }}
@@ -34,11 +35,12 @@ export default function ButtomNav() {
     >
       <Tab.Screen
         name="TabHome"
-        component={Home}
+        component={StackNavigation}
         options={{
           tabBarIcon: ({ focused }) =>
             !focused ? (
               <Svg
+
                 style={{}}
                 xmlns="http://www.w3.org/2000/svg"
                 width="22.956"

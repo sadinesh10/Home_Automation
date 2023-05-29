@@ -19,7 +19,7 @@ function Add_Scene() {
       <View style={{ flexDirection: "row" }}>
         <Pressable
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("HomeScreen");
           }}
         >
           <Image
@@ -260,7 +260,7 @@ function Add_Scene() {
               borderRadius: 15,
               backgroundColor: "#1a8ae5",
               marginHorizontal: 25,
-              marginTop: 50,
+              marginTop: 90,
             }}
             onPress={() => {
               navigation.navigate("Success_Action")

@@ -7,10 +7,19 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Circle, G, Path, Rect, Svg } from "react-native-svg";
+
 import { imageStyles } from "../../Authentication/Authentication_util";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { setSelectedRoom } from "../../../redux/mainDataSlice";
+import {
+  Bath_Room,
+  Bed_Room,
+  Dining_Room,
+  Kitchen,
+  Living_Room,
+} from "../../Living_Room/Setttings/Settings";
 
 function Selected_Room() {
   const navigation = useNavigation();
@@ -18,49 +27,43 @@ function Selected_Room() {
   const [images, setimages] = useState([
     {
       id: 1,
-      src: require("../../../assets/Unfilled/livingroom-rest-svgrepo-com.png"),
+      svg: ({ select }) => (
+        <Living_Room tint={select ? "#FFFFFF" : "#707070"} />
+      ),
       name: "Living Room",
       select: false,
     },
     {
       id: 2,
-      src: require("../../../assets/Unfilled/kitchen-pack-cooker-svgrepo-com.png"),
+      svg: ({ select }) => <Kitchen tint={select ? "#FFFFFF" : "#707070"} />,
       name: "Kitchen",
       select: false,
     },
     {
       id: 3,
-      src: require("../../../assets/Unfilled/dinner.png"),
+      svg: ({ select }) => (
+        <Dining_Room tint={select ? "#FFFFFF" : "#707070"} />
+      ),
       name: "Dining Room",
       select: false,
     },
     {
       id: 4,
-      src: require("../../../assets/Unfilled/Product-Icons.png"),
+      svg: ({ select }) => <Bed_Room tint={select ? "#FFFFFF" : "#707070"} />,
       name: "Bed Room",
       select: false,
     },
     {
       id: 5,
-      src: require("../../../assets/Unfilled/bathroom.png"),
+      svg: ({ select }) => <Bath_Room tint={select ? "#FFFFFF" : "#707070"} />,
       name: "bath Room",
       select: false,
     },
   ]);
-  const [select, setSelect] = useState(images);
-  const onSelect = (item) => {
-    const newItem = select.map((val) => {
-      if(val.select==true){
-        return {...val,select:false}
-      }
-      if (val.id == item.id) {
-        return { ...val, select: !val.select };
-      } else {
-        return val;
-      }
-    });
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-    setSelect(newItem);
+  const onSelect = (item, index) => {
+    setSelectedIndex(index);
   };
   return (
     <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
@@ -87,12 +90,13 @@ function Selected_Room() {
       <View style={{ justifyContent: "space-between" }}>
         <View style={{ alignItems: "center", marginBottom: 25 }}>
           <FlatList
-            data={select}
+            data={images}
             numColumns={2}
             renderItem={({ item, index }) => (
               <TouchableOpacity
+                key={index}
                 onPress={() => {
-                  onSelect(item);
+                  onSelect(item, index);
                   dispatch(setSelectedRoom(item.name));
                 }}
               >
@@ -105,27 +109,17 @@ function Selected_Room() {
                     justifyContent: "space-between",
                     alignItems: "center",
                     borderRadius: 12,
-                    backgroundColor: item.select ? "#1a8ae5" : "#ECECECB3",
-
+                    paddingTop: 30,
+                    backgroundColor:
+                      selectedIndex == index ? "#1a8ae5" : "#ECECECB3",
                     marginHorizontal: 20,
                   }}
                 >
-                  <Image
-                    source={item.src}
-                    key={index}
-                    style={{
-                      width: 40,
-                      height: 30,
-                      margin: 15,
-                      borderWidth: 2,
-                      resizeMode: "contain",
-                      tintColor: item.select ? "white" : null,
-                    }}
-                  ></Image>
+                  <item.svg select={selectedIndex == index} />
                   <Text
                     style={{
                       marginTop: 30,
-                      color: item.select ? "white" : null,
+                      color: selectedIndex == index ? "#FFFFFF" : "#707070",
                     }}
                   >
                     {item.name}
@@ -146,7 +140,7 @@ function Selected_Room() {
             borderRadius: 15,
             backgroundColor: "#1a8ae5",
             marginHorizontal: 25,
-            marginTop: 25,
+            marginTop: 10,
           }}
         >
           <Text style={imageStyles.pressableText}>Select Room</Text>

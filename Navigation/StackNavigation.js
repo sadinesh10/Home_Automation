@@ -1,14 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React from "react";
-import GetStarted from "../Screens/Get-Started";
-import LoginScreen from "../Screens/Authentication/LoginScreen";
-import ForgotPassword from "../Screens/Authentication/ForgotPassword";
-import ForgotOtp from "../Screens/Authentication/ForgotOtp";
-import ResetPassword from "../Screens/Authentication/ResetPassword";
-import LoginWithPhone from "../Screens/Authentication/LoginWithPhone";
-import OtpScreen from "../Screens/Authentication/OtpScreen";
 import Select_Room from "../Screens/Add_Devices/Select_Room";
-import ButtomNav from "./ButtomNavigation";
 import Add_Device_Authentication from "../Screens/Add_Devices/Add_Device_Authentication";
 import Light_Reset from "../Screens/Add_Devices/Light_Reset";
 import Light_Awaiting from "../Screens/Add_Devices/Light_Awaiting";
@@ -50,50 +41,14 @@ import Edit_Rooms from "../Screens/HomeScreen/Profile/Edit_Rooms";
 import Selected_Edit_Room from "../Screens/HomeScreen/Profile/Selected_Edit_Room";
 import Edit_Room_Choose_Icon from "../Screens/HomeScreen/Profile/Edit_Room_Choose_Icon";
 import Success_Action from "../Screens/Add_Scenes/Success_Action";
-
+import Home from "../Screens/HomeScreen/Home";
 const Stack = createNativeStackNavigator();
-
 export default function StackNavigation() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={"GetStarted"}
-        component={GetStarted}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"LoginScreen"}
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"ForgotScreem"}
-        component={ForgotPassword}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"ForgotOtpScreen"}
-        component={ForgotOtp}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"ResetPassword"}
-        component={ResetPassword}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"LoginWithPhone"}
-        component={LoginWithPhone}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"OtpScreen"}
-        component={OtpScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name={"Home"}
-        component={ButtomNav}
+        name={"HomeScreen"}
+        component={Home}
         options={{ headerShown: false }}
       />
       <Stack.Screen

@@ -1,9 +1,12 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import Heading from "../Heading";
+import Heading, { BackPressArrow } from "../Heading";
 import { AntDesign } from "@expo/vector-icons";
 import { Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Circle, G, Path, Svg } from "react-native-svg";
+import { WifiIcon } from "../Add_Device_Authentication";
+
 function Switch_Reset() {
   const navigation = useNavigation();
   return (
@@ -13,13 +16,10 @@ function Switch_Reset() {
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Switch_Device_Authentication");
-              console.log("hello")
+              console.log("hello");
             }}
           >
-            <Image
-              style={{ margin: 25 }}
-              source={require("../../../assets/Unfilled/arrow-back-fill.png")}
-            ></Image>
+            <BackPressArrow />
           </TouchableOpacity>
 
           <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
@@ -50,15 +50,27 @@ function Switch_Reset() {
           backgroundColor: "#ECECECE0",
         }}
       >
-        <Image
-          style={{
-            tintColor: "#1a8ae5",
-            width: 40,
-            height: 40,
-            resizeMode: "contain",
-          }}
-          source={require("../../../assets/Unfilled/power-off.png")}
-          ></Image>
+        <Svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50.04"
+          height="50.885"
+          viewBox="0 0 14.04 14.885"
+        >
+          <G transform="translate(-2.894 -1.85)">
+            <Path
+              d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+              transform="translate(0 -2.326)"
+              fill="#1a8ae5"
+              stroke-width="0.8"
+            />
+            <Path
+              d="M16.875,2.25h1.006V9.292H16.875Z"
+              transform="translate(-7.464 0)"
+              fill="#1a8ae5"
+              stroke-width="0.8"
+            />
+          </G>
+        </Svg>
         <Text
           style={{
             fontSize: 16,
@@ -114,9 +126,27 @@ function Switch_Reset() {
           >
             Power Button
           </Text>
-          <Image
-            source={require("../../../assets/Unfilled/power-off.png")}
-          ></Image>
+          <Svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20.04"
+            height="20.885"
+            viewBox="0 0 14.04 14.885"
+          >
+            <G transform="translate(-2.894 -1.85)">
+              <Path
+                d="M13.184,6.458l-.5.87a5.533,5.533,0,1,1-5.533,0l-.5-.87a6.539,6.539,0,1,0,6.539,0Z"
+                transform="translate(0 -2.326)"
+                fill="#707070"
+                stroke-width="0.8"
+              />
+              <Path
+                d="M16.875,2.25h1.006V9.292H16.875Z"
+                transform="translate(-7.464 0)"
+                fill="#707070"
+                stroke-width="0.8"
+              />
+            </G>
+          </Svg>
         </View>
         <View style={{ flexDirection: "row" }}>
           <Text
@@ -130,7 +160,7 @@ function Switch_Reset() {
           >
             LED WIFI
           </Text>
-          <Image source={require("../../../assets/Unfilled/wifi.png")}></Image>
+          <WifiIcon/>
         </View>
       </View>
       <View style={{ marginTop: 90 }}>

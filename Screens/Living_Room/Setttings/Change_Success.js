@@ -2,9 +2,9 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { G, Path, Svg } from "react-native-svg";
-
-function Add_Light_Success() {
+function Change_Success() {
   const navigation = useNavigation();
+
   return (
     <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
       <View
@@ -14,7 +14,7 @@ function Add_Light_Success() {
           paddingTop: 15,
           paddingBottom: 30,
           marginVertical: "80%",
-          marginHorizontal: "27%",
+          marginHorizontal: "25%",
         }}
       >
         <TouchableOpacity
@@ -44,7 +44,7 @@ function Add_Light_Success() {
         </TouchableOpacity>
 
         <View style={{ alignItems: "center" }}>
-        <Svg
+          <Svg
             style={{ alignSelf: "center", marginTop: 10, marginBottom: 15 }}
             xmlns="http://www.w3.org/2000/svg"
             width="40.549"
@@ -83,14 +83,14 @@ function Add_Light_Success() {
           </Svg>
           <Text
             style={{
-              paddingTop: 50,
+              paddingTop: 30,
               fontWeight: "600",
               color: "white",
               alignContent: "center",
               fontSize: 16,
             }}
           >
-            Light added
+            Light location is 
           </Text>
           <Text
             style={{
@@ -100,7 +100,27 @@ function Add_Light_Success() {
               fontSize: 16,
             }}
           >
-            successfully
+            successfully changed
+          </Text>
+          <Text
+            style={{
+              fontWeight: "600",
+              color: "white",
+              alignContent: "center",
+              fontSize: 16,
+            }}
+          >
+            from living room to
+          </Text>
+          <Text
+            style={{
+              fontWeight: "600",
+              color: "white",
+              alignContent: "center",
+              fontSize: 16,
+            }}
+          >
+            study room
           </Text>
         </View>
       </View>
@@ -108,4 +128,4 @@ function Add_Light_Success() {
   );
 }
 
-export default Add_Light_Success;
+export default Change_Success;

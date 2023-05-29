@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Image,
   Pressable,
+  Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
 import { imageStyles } from "./Authentication_util.js";
-import { G, Path, Svg, SvgUri } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
-import { Text } from "react-native";
 
 function OtpScreen() {
   const navigation = useNavigation();
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState(["", "", "", ""]);
+  const otpInputRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   const handleOtpChange = (text, index) => {
-    let newOtp = otp;
-    newOtp = newOtp.substring(0, index) + text + newOtp.substring(index + 1);
+    const newOtp = [...otp];
+    newOtp[index] = text;
     setOtp(newOtp);
+
+    // Focus the next OTP field if it exists
+    if (text !== "" && index < 3 && otpInputRefs[index + 1].current) {
+      otpInputRefs[index + 1].current.focus();
+    }
   };
 
   return (
@@ -38,49 +43,24 @@ function OtpScreen() {
             marginTop: 135,
           }}
         >
-          <View style={imageStyles.OtpWrapText}>
-            <TextInput
-              keyboardType="number-pad"
-              style={imageStyles.otpInput}
-              placeholder=" "
-              value={otp[0]}
-              onChangeText={(text) => handleOtpChange(text, 0)}
-            />
-          </View>
-          <View style={imageStyles.OtpWrapText}>
-            <TextInput
-              keyboardType="number-pad"
-              style={imageStyles.otpInput}
-              placeholder=" "
-              value={otp[1]}
-              onChangeText={(text) => handleOtpChange(text, 1)}
-            />
-          </View>
-          <View style={imageStyles.OtpWrapText}>
-            <TextInput
-              keyboardType="number-pad"
-              style={imageStyles.otpInput}
-              placeholder=" "
-              value={otp[2]}
-              onChangeText={(text) => handleOtpChange(text, 2)}
-            />
-          </View>
-          <View style={imageStyles.OtpWrapText}>
-            <TextInput
-              keyboardType="number-pad"
-              style={imageStyles.otpInput}
-              placeholder=" "
-              value={otp[3]}
-              onChangeText={(text) => handleOtpChange(text, 3)}
-            />
-          </View>
+          {otp.map((digit, index) => (
+            <View key={index} style={imageStyles.OtpWrapText}>
+              <TextInput
+                ref={otpInputRefs[index]}
+                style={imageStyles.otpInput}
+                placeholder="0"
+                value={digit}
+                onChangeText={(text) => handleOtpChange(text, index)}
+                keyboardType="numeric"
+                maxLength={1}
+              />
+            </View>
+          ))}
         </View>
 
         <Pressable
           onPress={() => {
-            if (otp.length === 4) {
-              navigation.navigate("Home");
-            }
+            navigation.navigate("Home");
           }}
           style={imageStyles.pressable}
         >

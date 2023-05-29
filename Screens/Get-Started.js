@@ -16,7 +16,7 @@ function GetStarted() {
     <View style={{width:"100%", height:"100%"}}>
       <ImageBackground
         style={{ width: "100%", height: "100%" }}
-        source={require("../assets/Images/Get_Started.png")}
+        source={require("../assets/Images/get_started.png")}
       >
         <View style={styles.container}>
           <Text style={styles.text}>Spikingnet IOT</Text>

@@ -11,7 +11,7 @@ function ProfileScreen() {
         <View style={{ flexDirection: "row", flex: 1 }}>
           <Pressable
             onPress={() => {
-              navigation.navigate("TabHome");
+              navigation.navigate("HomeScreen");
             }}
           >
             <Image
@@ -45,7 +45,7 @@ function ProfileScreen() {
       <View style={{ flexDirection: "row" }}>
         <Image
           style={{ width: 55, height: 55, borderRadius: 100, marginLeft: 20 }}
-          source={require("../../../assets/Images/profile_image.png")}
+          source={require("../../../assets/Images/sruthi.png")}
         ></Image>
         <View style={{ marginLeft: 20 }}>
           <Text style={{ fontSize: 18, fontWeight: "700" }}>Shruti Shah</Text>

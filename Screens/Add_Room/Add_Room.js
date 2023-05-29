@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
-import Heading from "../Add_Devices/Heading";
+import Heading, { BackPressArrow } from "../Add_Devices/Heading";
 import { useNavigation } from "@react-navigation/native";
 import { imageStyles } from "../Authentication/Authentication_util";
 import { TextInput } from "react-native-gesture-handler";
@@ -12,13 +12,10 @@ function Add_Room() {
       <View style={{ flexDirection: "row" }}>
         <Pressable
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("HomeScreen");
           }}
         >
-          <Image
-            style={{ margin: 25 }}
-            source={require("../../assets/Unfilled/arrow-back-fill.png")}
-          ></Image>
+         <BackPressArrow/>
         </Pressable>
         <Text style={{ marginTop: 18, fontSize: 20, fontWeight: "700" }}>
           Add Room
@@ -37,8 +34,7 @@ function Add_Room() {
       </Text>
       <View
         style={{
-          height: "7%",
-          width: "86%",
+          padding: 15,
           borderRadius: 10,
           marginTop: 2,
           marginHorizontal: 25,
@@ -47,8 +43,6 @@ function Add_Room() {
           alignItems: "center",
           backgroundColor: "#f2f2f2",
           fontSize: 18,
-          padding: 1,
-          paddingHorizontal: 10,
           justifyContent: "space-between",
         }}
       >
@@ -73,28 +67,23 @@ function Add_Room() {
       </Text>
       <View
         style={{
-          height: "7%",
-          width: "86%",
+          padding: 10,
           borderRadius: 10,
           marginTop: 2,
           marginHorizontal: 25,
           marginBottom: 15,
-          flexDirection: "row",
-          alignItems: "center",
           backgroundColor: "#f2f2f2",
           fontSize: 18,
-          padding: 1,
-          paddingHorizontal: 10,
-          justifyContent: "space-between",
           marginBottom: 180,
+          width:"86%"
         }}
       >
-        <TextInput placeholder="Guest Room"></TextInput>
+        <TextInput style={{flexDirection:"row"}} placeholder="Guest Room"></TextInput>
       </View>
       <View>
         <Pressable
           style={{
-            marginTop: 180,
+            marginTop: 130,
             alignItems: "center",
             paddingVertical: 15,
             paddingHorizontal: 32,

@@ -22,8 +22,10 @@ import OffCustomSlider from "./OffCustomSlider";
 import ListCustomSlider from "./ListCiustomSlider";
 import ListOffCustomSlider from "./ListOffCustomSlider";
 import { Circle, G, Path, Svg } from "react-native-svg";
+import { useNavigation } from "@react-navigation/native";
 
 function Home() {
+  const navigation = useNavigation();
   const [Device, setDevice] = useState(false);
   const [Rooms, setRooms] = useState(false);
   const [linearDevice, setLinearDevice] = useState(false);
@@ -33,7 +35,7 @@ function Home() {
 
   const [linearRooms, setLinearRooms] = useState(false);
   return (
-    <View>
+    <View style={{ backgroundColor: "white", width: "100%", height: "100%" }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View style={{ margin: 15 }}>
           <Text
@@ -54,7 +56,7 @@ function Home() {
         <View style={{ margin: 15 }}>
           <Image
             style={{ width: 35, height: 35, borderRadius: 100 }}
-            source={require("../../assets/Images/profile_image.png")}
+            source={require("../../assets/Images/sruthi.png")}
           ></Image>
         </View>
       </View>
@@ -187,7 +189,7 @@ function Home() {
               opacity: 100,
               fontWeight: 700,
               alignSelf: "center",
-              width: "43%",
+              width: "44%",
             }}
           >
             40%
@@ -432,7 +434,8 @@ function Home() {
                 backgroundColor: "#ECECECB3",
                 width: "45%",
                 borderRadius: 10,
-                margin: 10,
+                marginVertical: 10,
+                marginLeft: 20,
               }}
             >
               <View
@@ -521,7 +524,8 @@ function Home() {
               <View
                 style={{
                   flexDirection: "row",
-                  marginTop: 20,
+                  marginTop: 30,
+                  marginBottom: 5,
                   marginHorizontal: 10,
                   alignItems: "center",
                 }}
@@ -681,6 +685,7 @@ function Home() {
                 width: "42%",
                 borderRadius: 10,
                 margin: 10,
+                marginRight: 15,
               }}
             >
               <View
@@ -757,7 +762,8 @@ function Home() {
               <View
                 style={{
                   flexDirection: "row",
-                  marginTop: 20,
+                  marginTop: 30,
+                  marginBottom: 5,
                   marginHorizontal: 5,
                   alignItems: "center",
                   paddingBottom: 10,
@@ -830,7 +836,8 @@ function Home() {
                 backgroundColor: "#ECECECB3",
                 width: "45%",
                 borderRadius: 10,
-                margin: 10,
+                marginVertical: 10,
+                marginLeft: 20,
               }}
             >
               <View
@@ -1167,7 +1174,8 @@ function Home() {
                 backgroundColor: "#ECECECB3",
                 width: "45%",
                 borderRadius: 10,
-                margin: 10,
+                marginVertical: 10,
+                marginLeft: 20,
               }}
             >
               <View
@@ -2072,14 +2080,17 @@ function Home() {
       {GridRooms ? (
         <ScrollView style={{ height: "54%" }}>
           <View style={{ flexDirection: "row" }}>
-            <View
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Living Room");
+              }}
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
                 height: "85%",
                 borderRadius: 10,
-                marginHorizontal: 10,
-                marginTop: 5,
+                marginVertical: 5,
+                marginLeft: 20,
               }}
             >
               <View>
@@ -2159,8 +2170,11 @@ function Home() {
                   </Text>
                 </View>
               </View>
-            </View>
-            <View
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                navigation.navigate("Kitchen");
+              }}
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
@@ -2270,7 +2284,7 @@ function Home() {
                   </Text>
                 </View>
               </View>
-            </View>
+            </Pressable>
           </View>
           <View style={{ flexDirection: "row" }}>
             <View
@@ -2279,7 +2293,7 @@ function Home() {
                 width: "43%",
                 height: "85%",
                 borderRadius: 10,
-                marginHorizontal: 10,
+                marginLeft: 20,
               }}
             >
               <View>
@@ -2442,7 +2456,7 @@ function Home() {
                 width: "43%",
                 height: "85%",
                 borderRadius: 10,
-                marginHorizontal: 10,
+                marginLeft: 20,
               }}
             >
               <View>
@@ -2906,24 +2920,24 @@ function Home() {
                   marginHorizontal: 5,
                 }}
               >
-                 <Svg
-                      style={{
-                        alignSelf: "center",
-                        padding: 10,
-                      }}
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="22.6"
-                      height="22.784"
-                      viewBox="0 0 22.6 22.784"
-                    >
-                      <Path
-                        d="M21.75,13.125h-18V4.688a2.4,2.4,0,0,1,.708-1.71l.019-.019a2.423,2.423,0,0,1,2.747-.476,3.708,3.708,0,0,0,.552,4.529l.513.513-.945.945L8.4,9.531l.945-.945L14.585,3.35,15.53,2.4,14.469,1.344l-.945.945-.513-.513A3.707,3.707,0,0,0,8.28,1.355,3.919,3.919,0,0,0,3.417,1.9L3.4,1.917A3.893,3.893,0,0,0,2.25,4.688v8.438H.75v1.5h1.5v1.439a1.123,1.123,0,0,0,.058.356l1.4,4.185a1.124,1.124,0,0,0,1.067.769h.6L4.828,23.25H6.39l.548-1.875h9.755l.563,1.875h1.566l-.563-1.875h.972a1.124,1.124,0,0,0,1.066-.769l1.4-4.186a1.124,1.124,0,0,0,.058-.356V14.625h1.5v-1.5ZM8.837,2.837a2.2,2.2,0,0,1,3.114,0l.513.513L9.35,6.464l-.513-.513a2.2,2.2,0,0,1,0-3.114ZM20.25,16l-1.291,3.872H5.041L3.75,16V14.625h16.5Z"
-                        transform="translate(-0.7 -0.516)"
-                        fill="#707070"
-                        stroke="#707070"
-                        stroke-width="0.1"
-                      />
-                    </Svg>
+                <Svg
+                  style={{
+                    alignSelf: "center",
+                    padding: 10,
+                  }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22.6"
+                  height="22.784"
+                  viewBox="0 0 22.6 22.784"
+                >
+                  <Path
+                    d="M21.75,13.125h-18V4.688a2.4,2.4,0,0,1,.708-1.71l.019-.019a2.423,2.423,0,0,1,2.747-.476,3.708,3.708,0,0,0,.552,4.529l.513.513-.945.945L8.4,9.531l.945-.945L14.585,3.35,15.53,2.4,14.469,1.344l-.945.945-.513-.513A3.707,3.707,0,0,0,8.28,1.355,3.919,3.919,0,0,0,3.417,1.9L3.4,1.917A3.893,3.893,0,0,0,2.25,4.688v8.438H.75v1.5h1.5v1.439a1.123,1.123,0,0,0,.058.356l1.4,4.185a1.124,1.124,0,0,0,1.067.769h.6L4.828,23.25H6.39l.548-1.875h9.755l.563,1.875h1.566l-.563-1.875h.972a1.124,1.124,0,0,0,1.066-.769l1.4-4.186a1.124,1.124,0,0,0,.058-.356V14.625h1.5v-1.5ZM8.837,2.837a2.2,2.2,0,0,1,3.114,0l.513.513L9.35,6.464l-.513-.513a2.2,2.2,0,0,1,0-3.114ZM20.25,16l-1.291,3.872H5.041L3.75,16V14.625h16.5Z"
+                    transform="translate(-0.7 -0.516)"
+                    fill="#707070"
+                    stroke="#707070"
+                    stroke-width="0.1"
+                  />
+                </Svg>
               </View>
 
               <View
