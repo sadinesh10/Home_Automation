@@ -9,20 +9,30 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { G, Path, Rect, Svg } from "react-native-svg";
+import { Circle, G, Path, Rect, Svg } from "react-native-svg";
 import Schedules_List from "./Schedule/Schedules_List";
 import Device_Information from "./Setttings/Settings";
 import Settings from "./Setttings/Settings";
 import Patterns from "./Patterns/Patterns";
+import CustomSlider from "./CustomSlider";
+import Color_Temp from "./Color_Temp";
+import RGB_Custom_Slider from "./RGB_Custom_Slider";
+import Brightness from "./Brightness";
+import Schedule_Navigation from "../../Navigation/Schedule_Navigation";
+
 
 function Living_Room_Home_Screen() {
   const navigation = useNavigation();
   const [modal, setModal] = useState(false);
   const [schedule, setSchedule] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+    const [switchSelected, setSwitchSelected] = useState(false);
 
   const [settings, setSettings] = useState(false);
   const [patterns, setPatterns] = useState(false);
+  const [addSchedule, setAddSchedule] = useState(false);
+
+  const [light1, setlight1] = useState(false);
   const array2 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   const array = [
     {
@@ -285,6 +295,7 @@ function Living_Room_Home_Screen() {
               {array.map((item, index) => {
                 return (
                   <TouchableOpacity
+                    key={item.id}
                     onPress={() => {
                       onSelect(item, index);
                     }}
@@ -301,7 +312,6 @@ function Living_Room_Home_Screen() {
                           backgroundColor:
                             selectedIndex == index ? "#1a8ae5" : "#ECECECB3",
                         }}
-                        key={item.id}
                       >
                         <View
                           style={{
@@ -320,11 +330,182 @@ function Living_Room_Home_Screen() {
               })}
             </View>
           </ScrollView>
-          <View style={{ height: "54%" }}></View>
+          {array[selectedIndex].id == 1 || array[selectedIndex].id == 4 ? (
+            <View style={{ height: "54%" }}>
+              <View>
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    fontWeight: "900",
+                    fontSize: 18,
+                  }}
+                >
+                  Brightness
+                </Text>
+                <View
+                  style={{
+                    alignItems: "center",
+                  }}
+                >
+                  <CustomSlider />
+
+                  {CustomSwitchButton(switchSelected, setSwitchSelected)}
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginHorizontal: 42,
+                  }}
+                >
+                  {LowBrightness()}
+                  {HighBrightness()}
+                </View>
+              </View>
+            </View>
+          ) : null}
+          {array[selectedIndex].id == 2 || array[selectedIndex].id == 5 ? (
+            <View style={{ height: "54%" }}>
+              <View>
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    fontWeight: "900",
+                    fontSize: 18,
+                  }}
+                >
+                  Brightness
+                </Text>
+                <View
+                  style={{
+                    alignItems: "center",
+                  }}
+                >
+                  <CustomSlider />
+
+                  {CustomSwitchButton(switchSelected, setSwitchSelected)}
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    marginHorizontal: 42,
+                  }}
+                >
+                  {LowBrightness()}
+                  {HighBrightness()}
+                </View>
+                <View style={{ margin: 20 }}>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontWeight: "300",
+                      marginBottom: 10,
+                    }}
+                  >
+                    Color Temprature
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      marginHorizontal: 5,
+                    }}
+                  >
+                    <View style={{ marginTop: 10, marginRight: 5 }}>
+                      {LowBrightness()}
+                    </View>
+                    <Color_Temp />
+                    <View style={{ marginTop: 10, marginLeft: 5 }}>
+                      {HighBrightness()}
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          ) : null}
+          {array[selectedIndex].id == 3 || array[selectedIndex].id == 6 ? (
+            <ScrollView style={{ height: "50%",  }}>
+              <View>
+                <Text
+                  style={{
+                    alignSelf: "center",
+                    fontWeight: "900",
+                    fontSize: 18,
+                  }}
+                >
+                  Brightness
+                </Text>
+                <View
+                  style={{
+                    alignItems: "center",
+                  }}
+                >
+                  <RGB_Custom_Slider />
+
+                  {CustomSwitchButton(switchSelected, setSwitchSelected)}
+                </View>
+
+                <View style={{ marginHorizontal: 20 }}>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontWeight: "300",
+                      marginBottom: 10,
+                    }}
+                  >
+                    Brightness
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      marginHorizontal: 5,
+                    }}
+                  >
+                    <View style={{ marginTop: 10, marginRight: 5 }}>
+                      {LowBrightness()}
+                    </View>
+                    <Brightness/>
+                    <View style={{ marginTop: 10, marginLeft: 5 }}>
+                      {HighBrightness()}
+                    </View>
+                  </View>
+                </View>
+                <View style={{ margin: 20 }}>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      fontWeight: "300",
+                      marginBottom: 10,
+                    }}
+                  >
+                    Color Temprature
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      marginHorizontal: 5,
+                      marginBottom: 20
+                    }}
+                  >
+                    <View style={{ marginTop: 10, marginRight: 5 }}>
+                      {LowBrightness()}
+                    </View>
+                    <Color_Temp />
+                    <View style={{ marginTop: 10, marginLeft: 5 }}>
+                      {HighBrightness()}
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </ScrollView>
+          ) : null}
         </View>
       )}
 
-      {schedule && <Schedules_List onBackPress={() => setSchedule()} />}
+      {schedule && <Schedule_Navigation onBackPress={() => setSchedule()} />}
       {settings && <Settings onBackPress={() => setSettings()} />}
       {patterns && <Patterns onBackPress={() => setPatterns()} />}
       <View
@@ -486,6 +667,194 @@ function Living_Room_Home_Screen() {
 }
 
 export default Living_Room_Home_Screen;
+export function CustomSwitchButton(switchSelected, setSwitchSelected) {
+  return (
+    <View
+      style={{
+        width: "30%",
+        height: 40,
+        backgroundColor: "#ECECECB3",
+        borderRadius: 20,
+        alignItems: "center",
+        flexDirection: "row",
+        position: "absolute",
+        top: 95,
+      }}
+    >
+      <TouchableOpacity
+        style={{
+          width: "50%",
+          height: 30,
+          backgroundColor: switchSelected ? "#ECECECb3" : "#1a8ae5",
+          borderRadius: 20,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onPress={() => {
+          setSwitchSelected(false);
+        }}
+      >
+        <Text style={{ color: switchSelected ? "#000000" : "white" }}>On</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{
+          width: "50%",
+          height: 30,
+          backgroundColor: switchSelected ? "#1a8ae5" : "#ECECECB3",
+          borderRadius: 20,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onPress={() => {
+          setSwitchSelected(true);
+        }}
+      >
+        <Text style={{ color: switchSelected ? "white" : "#000000" }}>Off</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+export function HighBrightness() {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+    >
+      <G transform="translate(-321 -592)">
+        <G transform="translate(-2614 -18625)">
+          <Circle
+            cx="7"
+            cy="7"
+            r="7"
+            transform="translate(2935 19217)"
+            fill="rgba(236,236,236,0.7)"
+          />
+          <G transform="translate(2948.944 19217.191) rotate(90)">
+            <Path
+              d="M16.875,2.25h.617V3.781h-.617Z"
+              transform="translate(-10.154 0)"
+              fill="#000000"
+            />
+            <Path
+              d="M24.4,7.138,25.48,6.056l.437.437L24.835,7.575Z"
+              transform="translate(-15.155 -2.762)"
+              fill="#000000"
+            />
+            <Path
+              d="M28.17,16.875H29.7v.617H28.17Z"
+              transform="translate(-17.892 -10.234)"
+              fill="#000000"
+            />
+            <Path
+              d="M24.4,24.837l.437-.437,1.082,1.083-.437.436Z"
+              transform="translate(-15.16 -15.316)"
+              fill="#000000"
+            />
+            <Path
+              d="M16.875,28.17h.617V29.7h-.617Z"
+              transform="translate(-10.154 -18.051)"
+              fill="#000000"
+            />
+            <Path
+              d="M6.072,25.489l1.082-1.082.437.437L6.509,25.926Z"
+              transform="translate(-2.773 -15.321)"
+              fill="#000000"
+            />
+            <Path
+              d="M2.25,16.875H3.781v.617H2.25Z"
+              transform="translate(0 -10.234)"
+              fill="#000000"
+            />
+            <Path
+              d="M6.064,6.5,6.5,6.064,7.584,7.147l-.437.437Z"
+              transform="translate(-2.768 -2.768)"
+              fill="#000000"
+            />
+            <Path
+              d="M13.1,11.25A1.852,1.852,0,1,0,14.954,13.1,1.852,1.852,0,0,0,13.1,11.25Z"
+              transform="translate(-6.073 -6.152)"
+              fill="#000000"
+            />
+          </G>
+        </G>
+      </G>
+    </Svg>
+  );
+}
+
+export function LowBrightness() {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+    >
+      <G transform="translate(-25 -592)">
+        <G transform="translate(-2698 -18625)">
+          <Circle
+            cx="7"
+            cy="7"
+            r="7"
+            transform="translate(2723 19217)"
+            fill="rgba(236,236,236,0.7)"
+          />
+          <G transform="translate(2736.907 19217.35) rotate(90)">
+            <Path
+              d="M16.875,2.25h.641V3.839h-.641Z"
+              transform="translate(-10.274 0)"
+              fill="#000000"
+            />
+            <Path
+              d="M24.4,7.179l1.123-1.123.453.453L24.851,7.632Z"
+              transform="translate(-15.469 -2.722)"
+              fill="#000000"
+            />
+            <Path
+              d="M28.17,16.875h1.589v.641H28.17Z"
+              transform="translate(-18.167 -10.301)"
+              fill="#000000"
+            />
+            <Path
+              d="M24.405,24.853l.453-.453,1.123,1.123-.453.453Z"
+              transform="translate(-15.474 -15.523)"
+              fill="#000000"
+            />
+            <Path
+              d="M16.875,28.17h.641v1.589h-.641Z"
+              transform="translate(-10.274 -18.22)"
+              fill="#000000"
+            />
+            <Path
+              d="M6.072,25.53,7.2,24.407l.453.453L6.525,25.983Z"
+              transform="translate(-2.734 -15.528)"
+              fill="#000000"
+            />
+            <Path
+              d="M2.25,16.875H3.839v.641H2.25Z"
+              transform="translate(0 -10.301)"
+              fill="#000000"
+            />
+            <Path
+              d="M6.064,6.516l.454-.452L7.641,7.187l-.453.453Z"
+              transform="translate(-2.728 -2.728)"
+              fill="#000000"
+            />
+            <Path
+              d="M13.172,11.891a1.281,1.281,0,1,1-1.281,1.281,1.281,1.281,0,0,1,1.281-1.281m0-.641a1.922,1.922,0,1,0,1.922,1.922A1.922,1.922,0,0,0,13.172,11.25Z"
+              transform="translate(-6.251 -6.277)"
+              fill="#000000"
+            />
+          </G>
+        </G>
+      </G>
+    </Svg>
+  );
+}
+
 function Bulb3({ tint = "#707070" }) {
   return (
     <Svg

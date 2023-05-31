@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import Slider from "@react-native-community/slider";
 import { LinearGradient } from "expo-linear-gradient";
-
 class Color_Temp extends Component {
   state = {
     slideValue: 0,
@@ -17,16 +16,15 @@ class Color_Temp extends Component {
   render() {
     const sliderStyle = {
       sliderDummy: {
-        width: 250,
-        height: 27,
-        borderRadius: 100,
+        width: 270,
+        height: 47,
+        borderRadius: 10,
         position: "absolute",
       },
       sliderReal: {
-        backgroundColor: "#1A8AE5",
-        width: (this.state.slideValue / 50) * 250,
-        height: 27,
-        borderRadius: 100,
+        width: (this.state.slideValue / 50) * 270,
+        height: 47,
+        borderRadius: 10,
       },
     };
     return (
@@ -39,10 +37,14 @@ class Color_Temp extends Component {
           start={{ x: 0.0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}
           colors={["#efff66", "#BDE1FF"]}
-          style={{ width: 250, height: 30 }}
+          style={{
+            width: 270,
+            height: 35,
+            borderRadius: 100,
+          }}
         >
           <Slider
-            style={{ width: 250, height: 30, borderRadius: 100 }}
+            style={{ width: 270, height: 35, borderRadius: 50 }}
             minimumValue={0}
             maximumValue={50}
             value={this.state.slideValue}

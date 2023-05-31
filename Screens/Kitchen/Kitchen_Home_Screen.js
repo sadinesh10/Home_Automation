@@ -15,6 +15,8 @@ import CustomSlider from "./CustomSlider";
 import Schedules_List from "../Living_Room/Schedule/Schedules_List";
 import Settings from "../Living_Room/Setttings/Settings";
 import Interval_Time from "./Interval_Time/Interval_Time";
+import Interval_Time_Navigation from "../../Navigation/Interval_Time_Navigation";
+import Schedule_Navigation from "../../Navigation/Schedule_Navigation";
 
 function Kitchen_Home_Screen() {
   const navigation = useNavigation();
@@ -119,7 +121,6 @@ function Kitchen_Home_Screen() {
           </Svg>
         );
       },
-
     },
     {
       id: 4,
@@ -223,6 +224,7 @@ function Kitchen_Home_Screen() {
                     style={{
                       marginHorizontal: 20,
                     }}
+                    key={index}
                   >
                     <View>
                       <View
@@ -233,7 +235,6 @@ function Kitchen_Home_Screen() {
                           backgroundColor:
                             selectedIndex == index ? "#1a8ae5" : "#ECECECB3",
                         }}
-                        key={item.id}
                       >
                         <View
                           style={{
@@ -607,9 +608,9 @@ function Kitchen_Home_Screen() {
         </View>
       )}
 
-      {schedule && <Schedules_List onBackPress={() => setSchedule()} />}
+      {schedule && <Schedule_Navigation onBackPress={() => setSchedule()} />}
       {settings && <Settings onBackPress={() => setSettings()} />}
-      {intervalTime && <Interval_Time onBackPress={() => setIntervalTime()} />}
+      {intervalTime && <Interval_Time_Navigation onBackPress={() => setIntervalTime()} />}
 
       <View
         style={{
@@ -624,7 +625,7 @@ function Kitchen_Home_Screen() {
       >
         {menus.map((item, index) => {
           return (
-            <View>
+            <View key={index}>
               <TouchableOpacity
                 onPress={() => {
                   if (item.name == "Leave Off") {
@@ -653,7 +654,6 @@ function Kitchen_Home_Screen() {
                     setModal(false);
                   }
                 }}
-                key={index}
               >
                 <View style={{ alignSelf: "center", marginBottom: 10 }}>
                   {item.svg()}

@@ -1,10 +1,26 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { G, Path, Svg } from "react-native-svg";
+import { styles } from "../../Navigation/ButtomNavUtil";
 
 function Add_Light_Success() {
   const navigation = useNavigation();
+  useEffect(() => {
+    navigation.getParent().setOptions({
+      tabBarStyle: {
+        display: "none",
+      },
+    });
+
+    return () => {
+      navigation.getParent().setOptions({
+        tabBarStyle: {
+          ...styles,
+        },
+      });
+    };
+  }, []);
   return (
     <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
       <View
@@ -17,6 +33,7 @@ function Add_Light_Success() {
           marginHorizontal: "27%",
         }}
       >
+        
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("HomeScreen");

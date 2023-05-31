@@ -427,15 +427,17 @@ function Home() {
         )}
       </View>
       {GridDevice ? (
-        <ScrollView style={{ height: "54%" }}>
+        <ScrollView style={{ height: "54%", marginBottom: 50 }}>
           <View style={{ flexDirection: "row" }}>
             <View
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "45%",
                 borderRadius: 10,
-                marginVertical: 10,
                 marginLeft: 20,
+                marginVertical: 5,
+                marginRight: 5,
+                marginHorizontal: 5,
               }}
             >
               <View
@@ -524,8 +526,7 @@ function Home() {
               <View
                 style={{
                   flexDirection: "row",
-                  marginTop: 30,
-                  marginBottom: 5,
+                  marginTop: 25,
                   marginHorizontal: 10,
                   alignItems: "center",
                 }}
@@ -684,8 +685,9 @@ function Home() {
                 backgroundColor: "#ECECECB3",
                 width: "42%",
                 borderRadius: 10,
-                margin: 10,
+                marginVertical: 5,
                 marginRight: 15,
+                marginHorizontal: 5,
               }}
             >
               <View
@@ -762,8 +764,7 @@ function Home() {
               <View
                 style={{
                   flexDirection: "row",
-                  marginTop: 30,
-                  marginBottom: 5,
+                  marginTop: 25,
                   marginHorizontal: 5,
                   alignItems: "center",
                   paddingBottom: 10,
@@ -836,8 +837,10 @@ function Home() {
                 backgroundColor: "#ECECECB3",
                 width: "45%",
                 borderRadius: 10,
-                marginVertical: 10,
                 marginLeft: 20,
+                marginVertical: 5,
+                marginRight: 5,
+                marginHorizontal: 5,
               }}
             >
               <View
@@ -1101,7 +1104,9 @@ function Home() {
                 backgroundColor: "#ECECECB3",
                 width: "42%",
                 borderRadius: 10,
-                margin: 10,
+                marginVertical: 5,
+                marginRight: 15,
+                marginHorizontal: 5,
               }}
             >
               <View
@@ -1252,7 +1257,7 @@ function Home() {
         </ScrollView>
       ) : null}
       {linearDevice ? (
-        <ScrollView style={{ height: "50%" }}>
+        <ScrollView style={{ height: "50%", marginBottom: 50 }}>
           <View
             style={{
               marginHorizontal: 15,
@@ -2078,7 +2083,7 @@ function Home() {
         </ScrollView>
       ) : null}
       {GridRooms ? (
-        <ScrollView style={{ height: "54%" }}>
+        <ScrollView style={{ height: "54%",marginBottom: 50 }}>
           <View style={{ flexDirection: "row" }}>
             <Pressable
               onPress={() => {
@@ -2087,10 +2092,11 @@ function Home() {
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
-                height: "85%",
+                height: 170,
                 borderRadius: 10,
                 marginVertical: 5,
                 marginLeft: 20,
+
               }}
             >
               <View>
@@ -2178,10 +2184,11 @@ function Home() {
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
-                height: "85%",
+                height: 170,
                 borderRadius: 10,
                 marginHorizontal: 10,
-                marginTop: 5,
+                marginVertical: 5,
+
               }}
             >
               <View>
@@ -2291,9 +2298,11 @@ function Home() {
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
-                height: "85%",
+                height: 170,
                 borderRadius: 10,
                 marginLeft: 20,
+                marginVertical: 5,
+
               }}
             >
               <View>
@@ -2366,9 +2375,10 @@ function Home() {
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
-                height: "85%",
+                height: 170,
                 borderRadius: 10,
                 marginHorizontal: 10,
+                marginVertical: 5,
               }}
             >
               <View>
@@ -2454,9 +2464,11 @@ function Home() {
               style={{
                 backgroundColor: "#ECECECB3",
                 width: "43%",
-                height: "85%",
+                height: 170,
                 borderRadius: 10,
                 marginLeft: 20,
+                marginVertical: 5,
+
               }}
             >
               <View>
@@ -2531,7 +2543,7 @@ function Home() {
         </ScrollView>
       ) : null}
       {linearRooms ? (
-        <ScrollView style={{ width: "100%", height: "50%" }}>
+        <ScrollView style={{ width: "100%", height: "50%", marginBottom: 50 }}>
           <View
             style={{
               marginHorizontal: 15,

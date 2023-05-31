@@ -3,7 +3,10 @@ import { Modal, ScrollView, TouchableOpacity } from "react-native";
 import { Pressable, Text, View } from "react-native";
 import { G, Path, Svg } from "react-native-svg";
 import UseSwitch from "../../HomeScreen/Switch";
-function Interval_Time({ onBackPress }) {
+import { useNavigation } from "@react-navigation/native";
+function Interval_Time({ route }) {
+  const { onBackPress } = route.params;
+  const navigation = useNavigation();
   const [selected, setSelected] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [modal, setModal] = useState(false);
@@ -59,7 +62,7 @@ function Interval_Time({ onBackPress }) {
     setSelectAll(selectedLen == newItem.length);
   };
   return (
-    <View style={{ backgroundColor: "#FFFFFF" }} height="90%">
+    <View style={{ backgroundColor: "#FFFFFF" }} height="100%">
       <View style={{ flexDirection: "row" }}>
         {selected ? (
           <Pressable
@@ -166,7 +169,7 @@ function Interval_Time({ onBackPress }) {
             ) : (
               <Pressable
                 onPress={() => {
-                    
+                  navigation.navigate("Interval_Time_adding");
                 }}
               >
                 <Svg
@@ -504,7 +507,7 @@ function Interval_Time({ onBackPress }) {
         </View>
       </Modal>
       <Modal transparent visible={intervalAdding}>
-        <View style={{height:"90%", backgroundColor:"white"}}>
+        <View style={{ height: "90%", backgroundColor: "white" }}>
           <Text>hello</Text>
         </View>
       </Modal>

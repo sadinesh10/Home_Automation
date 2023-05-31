@@ -10,7 +10,6 @@ import ForgotOtp from "./Screens/Authentication/ForgotOtp";
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigation from "./Navigation/LoginNavigation";
 import Home from "./Screens/HomeScreen/Home";
-import CustomSlider from "./Screens/HomeScreen/CustomSlider";
 import ButtomNav from "./Navigation/ButtomNavigation";
 import Switch from "./Screens/HomeScreen/Switch";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -23,6 +22,9 @@ import Living_Room_Home_Screen from "./Screens/Living_Room/Living_Room_Home_Scre
 import Schedules_List from "./Screens/Living_Room/Schedule/Schedules_List";
 import Kitchen_Home_Screen from "./Screens/Kitchen/Kitchen_Home_Screen";
 import LoginNavigation from "./Navigation/LoginNavigation";
+import CustomSlider from "./Screens/Living_Room/CustomSlider";
+import RGB_Custom_Slider from "./Screens/Living_Room/RGB_Custom_Slider";
+import Brightness from "./Screens/Living_Room/Brightness";
 
 
 export default function App() {
@@ -42,7 +44,8 @@ export default function App() {
             {/* <Schedules_List/> */}
             {/* <Kitchen_Home_Screen/> */}
             <LoginNavigation/>
-
+            {/* <CustomSlider/> */}
+            {/* <RGB_Custom_Slider/> */}
             <StatusBar
               translucent={false}
               style="auto"

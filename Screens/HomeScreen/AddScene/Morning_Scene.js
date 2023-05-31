@@ -282,6 +282,7 @@ function Morning_Scene() {
         style={{
           width: "100%",
           height: "60%",
+          marginBottom: 30
         }}
       >
         <View>
@@ -518,7 +519,7 @@ function Morning_Scene() {
               >
                 {array1.map((item, index) => {
                   return (
-                    <View style={{ margin: 5 }}>
+                    <View style={{ margin: 5 }} key={index}>
                       <Text
                         style={{
                           alignSelf: "center",
@@ -546,7 +547,7 @@ function Morning_Scene() {
               >
                 {array1.map((item, index) => {
                   return (
-                    <View style={{ margin: 5 }}>
+                    <View style={{ margin: 5 }} key={index}> 
                       <Text
                         style={{
                           alignSelf: "center",
@@ -629,9 +630,7 @@ function Morning_Scene() {
           style={{
             backgroundColor: "white",
             width: "100%",
-            height: "30%",
-            flex: 1,
-            justifyContent: "center",
+            height: "15%",
           }}
         >
           <View>

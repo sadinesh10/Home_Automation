@@ -8,36 +8,41 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Bulb, Fan, Light, Plug, Switch } from "../../Add_Devices/Select_Room";
 
 function Edit_Devices() {
   const navigation = useNavigation();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const onSelect = (item, index) => {
+    setSelectedIndex(index);
+  };
   const [images, setimages] = useState([
     {
       id: 1,
-      src: require("../../../assets/Unfilled/lamp.png"),
+      svg: ({ select }) => <Light tint={select ? "#FFFFFF" : "#707070"} />,
       name: "Light 1",
       location: "Living Room",
       select: false,
     },
     {
       id: 2,
-      src: require("../../../assets/Unfilled/cooling-symbol-2677.png"),
-      name: "light 2",
+      svg: ({ select }) => <Fan tint={select ? "#FFFFFF" : "#707070"} />,
+      name: "Fan",
       location: "Bed Room",
 
       select: false,
     },
     {
       id: 3,
-      src: require("../../../assets/Unfilled/power-off.png"),
-      name: "fan1",
+      svg: ({ select }) => <Switch tint={select ? "#FFFFFF" : "#707070"} />,
+      name: "Switch",
       location: "Kitchen",
 
       select: false,
     },
     {
       id: 4,
-      src: require("../../../assets/Unfilled/bulb-outline.png"),
+      svg: ({ select }) => <Bulb tint={select ? "#FFFFFF" : "#707070"} />,
       name: "Fan2",
       location: "Kitchen",
 
@@ -45,7 +50,7 @@ function Edit_Devices() {
     },
     {
       id: 5,
-      src: require("../../../assets/Unfilled/plug.png"),
+      svg: ({ select }) => <Plug tint={select ? "#FFFFFF" : "#707070"} />,
       name: "Light3",
       location: "Kitchen",
 
@@ -95,44 +100,41 @@ function Edit_Devices() {
           data={images}
           numColumns={2}
           renderItem={({ item, index }) => (
-            <View
+            <TouchableOpacity
+              onPress={() => {
+                onSelect(item, index);
+              }}
               style={{
                 width: 140,
-                height: 120,
+                height: 140,
                 margin: 20,
                 padding: 10,
                 justifyContent: "space-between",
                 alignItems: "center",
                 borderRadius: 12,
-                backgroundColor: item.select ? "#1a8ae5" : "#ECECECB3",
+                backgroundColor:
+                  selectedIndex == index ? "#1a8ae5" : "#ECECECB3",
 
                 marginHorizontal: 20,
               }}
             >
               <Text
                 style={{
-                  color: item.select ? "white" : null,
+                  color: selectedIndex == index ? "#FFFFFF" : "#707070",
                 }}
               >
                 {item.name}
               </Text>
-              <Image
-                source={item.src}
-                key={index}
-                style={{
-                  borderWidth: 2,
-                  resizeMode: "contain",
-                  tintColor: item.select ? "white" : "black",
-                }}
-              ></Image>
+              <item.svg select={selectedIndex == index} />
+
               <Text
                 style={{
-                  color: item.select ? "white" : "black",
+                  color: selectedIndex == index ? "#FFFFFF" : "#707070",
                 }}
               >
                 {item.location}
               </Text>
-            </View>
+            </TouchableOpacity>
           )}
         />
       </View>

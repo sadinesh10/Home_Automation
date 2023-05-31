@@ -26,7 +26,7 @@ function Settings({ onBackPress }) {
 
   const data = [
     {
-      sideHeading: "Netwrok SSID",
+      sideHeading: "Network SSID",
       value: "VIKAS",
     },
     {
@@ -42,7 +42,7 @@ function Settings({ onBackPress }) {
       value: "1",
     },
     {
-      sideHeading: "Brightness Levek",
+      sideHeading: "Brightness Level",
       value: "100%",
     },
     {
@@ -443,6 +443,7 @@ function Settings({ onBackPress }) {
           <View style={{ alignItems: "center", marginBottom: 25 }}>
             <FlatList
               data={rooms}
+              showsVerticalScrollIndicator={false}
               numColumns={2}
               style={{ height: 460 }}
               renderItem={({ item, index }) => (

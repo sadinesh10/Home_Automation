@@ -21,7 +21,9 @@ function AddMorenavigation() {
   const onCLick = () => {
     buttomSheetModalRef.current?.present();
   };
-
+  const onPress = () => {
+    buttomSheetModalRef.current?.close();
+  };
   useEffect(() => {
     Keyboard.addListener("keyboardDidShow", () => {
       setKeyboardVisible(true);
@@ -67,6 +69,7 @@ function AddMorenavigation() {
             <Pressable
               onPress={() => {
                 navigation.navigate("Select_Device");
+                onPress();
               }}
             >
               <View
@@ -113,6 +116,7 @@ function AddMorenavigation() {
             <Pressable
               onPress={() => {
                 navigation.navigate("Add_Room");
+                onPress();
               }}
             >
               <View
@@ -166,6 +170,7 @@ function AddMorenavigation() {
             <Pressable
               onPress={() => {
                 navigation.navigate("Add_Scene");
+                onPress();
               }}
             >
               <View

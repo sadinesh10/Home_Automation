@@ -11,6 +11,9 @@ import ButtomNav from "./ButtomNavigation";
 import Living_Room_Home_Screen from "../Screens/Living_Room/Living_Room_Home_Screen";
 import Kitchen_Home_Screen from "../Screens/Kitchen/Kitchen_Home_Screen";
 import Change_Success from "../Screens/Living_Room/Setttings/Change_Success";
+import Add_Schedule from "../Screens/Living_Room/Schedule/Add_Schedule";
+import Schedules_List from "../Screens/Living_Room/Schedule/Schedules_List";
+import Interval_Time_adding from "../Screens/Kitchen/Interval_Time/Interval_Time_adding";
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +73,12 @@ export default function LoginNavigation() {
       <Stack.Screen
         name={"Change_Success"}
         component={Change_Success}
+        options={{ headerShown: false }}
+      />
+      
+      <Stack.Screen
+        name={"Interval_Time_adding"}
+        component={Interval_Time_adding}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

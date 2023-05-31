@@ -3,11 +3,12 @@ import React from "react";
 import { Image, TextInput, TouchableOpacity } from "react-native";
 import { Pressable, Text, View } from "react-native";
 import { imageStyles } from "../../Authentication/Authentication_util";
+import { ScrollView } from "react-native";
 
 function Edit_Profile() {
   const navigation = useNavigation();
   return (
-    <View style={{ width: "100%", height: "100%", backgroundColor: "white" }}>
+    <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ flexDirection: "row" }}>
         <Pressable
           onPress={() => {
@@ -23,6 +24,7 @@ function Edit_Profile() {
           Edit Profile
         </Text>
       </View>
+
       <View
         style={{
           height: "15%",
@@ -48,7 +50,7 @@ function Edit_Profile() {
             borderRadius: 100,
             paddingHorizontal: 8,
             position: "absolute",
-            top: 70,
+            top: 60,
             right: 120,
           }}
           onPress={() => {}}
@@ -119,54 +121,43 @@ function Edit_Profile() {
             ></TextInput>
           </View>
         </View>
-      </View>
-      <View
-        style={{
-          backgroundColor: "white",
-          width: "100%",
-          height: "30%",
-          flex: 1,
-          justifyContent: "center",
-        }}
-      >
-        <View>
-          <Pressable
+        <Pressable
+          style={{
+            marginTop: 40,
+            alignItems: "center",
+            paddingVertical: 15,
+            paddingHorizontal: 32,
+            borderRadius: 15,
+            backgroundColor: "#1a8ae5",
+            marginHorizontal: 25,
+          }}
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        >
+          <Text style={imageStyles.pressableText}>Save</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Profile");
+          }}
+        >
+          <Text
             style={{
-              alignItems: "center",
-              paddingVertical: 15,
-              paddingHorizontal: 32,
-              borderRadius: 15,
-              backgroundColor: "#1a8ae5",
-              marginHorizontal: 25,
+              fontSize: 16,
+              lineHeight: 21,
+              fontWeight: "bold",
+              letterSpacing: 0.25,
+              alignSelf: "center",
+              marginTop: 10,
             }}
-            onPress={() => {
-                navigation.navigate("Profile");
+          >
+            Cancel
+          </Text>
+        </Pressable>
 
-            }}
-          >
-            <Text style={imageStyles.pressableText}>Save</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-                navigation.navigate("Profile");
-            }}
-          >
-            <Text
-              style={{
-                fontSize: 16,
-                lineHeight: 21,
-                fontWeight: "bold",
-                letterSpacing: 0.25,
-                alignSelf: "center",
-                marginTop: 10,
-              }}
-            >
-              Cancel
-            </Text>
-          </Pressable>
-        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

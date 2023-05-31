@@ -21,7 +21,7 @@ function Select_Room() {
     setSelectedIndex(index);
   };
 
-  const array = ["Living Room", "Bed Room", "Study Room", "Dinig Room"];
+  const array = ["Living Room", "Bed Room", "Study Room", "Dining Room"];
   const array1 = [
     {
       id: 1,
@@ -133,12 +133,13 @@ function Select_Room() {
               {array.map((item, index) => {
                 return (
                   <Pressable
+                    key={index}
                     onPress={() => {
                       setPlace(item);
                       setmodal(false);
                     }}
                   >
-                    <View key={index}>
+                    <View>
                       <View
                         style={{
                           backgroundColor: "#ECECECEC",
@@ -186,6 +187,7 @@ function Select_Room() {
             numColumns={2}
             renderItem={({ item, index }) => (
               <TouchableOpacity
+                key={index}
                 onPress={() => {
                   onSelect(item, index);
                   if (item.id == 1) {
@@ -280,7 +282,7 @@ function Light1({ tint = "#707070" }) {
     </Svg>
   );
 }
-function Plug({ tint = "#707070" }) {
+export function Plug({ tint = "#707070" }) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -297,7 +299,7 @@ function Plug({ tint = "#707070" }) {
     </Svg>
   );
 }
-function Bulb({ tint = "#707070" }) {
+export function Bulb({ tint = "#707070" }) {
   return (
     <Svg
       style={{ alignSelf: "center" }}
@@ -356,7 +358,7 @@ function Bulb({ tint = "#707070" }) {
   );
 }
 
-function Fan({ tint = "#707070" }) {
+export function Fan({ tint = "#707070" }) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -384,7 +386,7 @@ function Fan({ tint = "#707070" }) {
   );
 }
 
-function Light({ tint = "#707070" }) {
+export function Light({ tint = "#707070" }) {
   return (
     <Svg
       style={{ alignSelf: "center" }}
